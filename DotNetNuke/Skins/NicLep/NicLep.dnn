@@ -1,1 +1,110 @@
-
+<dotnetnuke type="Package" version="5.0">
+  <packages>
+    <package name="SDDotNet.DNN.Skins.NicLep" type="Skin" version="01.00.02">
+      <friendlyName>NicLep</friendlyName>
+      <description>A responsive DNN skin using Bootstrap 3 and Foundation Zurb 6. Requires installation via the Host/Extensions page.</description>
+      <owner>
+        <name>niclep.fr</name>
+        <organization>niclep.fr</organization>
+        <url>http://www.niclep.fr/</url>
+        <email>admin@niclep.fr</email>
+      </owner>
+      <azureCompatible>true</azureCompatible>
+      <license src="license.txt"></license>
+      <releaseNotes src="releasenotes.txt"></releaseNotes>
+      <dependencies>
+        <dependency type="CoreVersion">07.01.00</dependency>
+      </dependencies>
+      <components>
+        <component type="Script">
+          <scripts>
+            <basePath>portals\_default\skins\NicLep</basePath>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>00.00.02.SqlDataProvider</name>
+              <version>00.00.02</version>
+            </script>
+            <script type="UnInstall">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>Uninstall.SqlDataProvider</name>
+              <version>00.00.01</version>
+            </script>
+          </scripts>
+        </component>
+        <component type="ResourceFile">
+          <resourceFiles>
+            <basePath>portals/_default/skins/NicLep</basePath>
+            <resourceFile>
+              <name>Resources.zip</name>
+            </resourceFile>
+          </resourceFiles>
+        </component>
+        <component type="Assembly">
+          <assemblies>
+            <assembly>
+              <name>NicLep.dll</name>
+              <path>bin</path>
+            </assembly>
+            <assembly>
+              <name>SD.dll</name>
+              <path>bin</path>
+            </assembly>
+          </assemblies>
+        </component>
+        <component type="Skin">
+          <skinFiles>
+            <skinName>NicLep</skinName>
+            <basePath />
+            <skinFile>
+              <name>404.ascx</name>
+            </skinFile>
+            <skinFile>
+              <name>Auth.ascx</name>
+            </skinFile>
+            <skinFile>
+              <name>Home.ascx</name>
+            </skinFile>
+            <skinFile>
+              <name>Privacy.ascx</name>
+            </skinFile>
+            <skinFile>
+              <name>Terms.ascx</name>
+            </skinFile>
+          </skinFiles>
+        </component>
+      </components>
+    </package>
+    <package name="SDDotNet.DNN.Skins.Containers.NicLep" type="Container" version="01.00.02">
+      <friendlyName>NicLep</friendlyName>
+      <description>Containers for the NicLep Skin package.</description>
+      <owner>
+        <name>niclep.fr</name>
+        <organization>niclep.fr</organization>
+        <url>http://www.niclep.fr/</url>
+        <email>admin@niclep.fr</email>
+      </owner>
+      <license src="license.txt"></license>
+      <releaseNotes src="releasenotes.txt"></releaseNotes>
+      <dependencies>
+        <dependency type="CoreVersion">07.01.00</dependency>
+      </dependencies>
+      <components>
+        <component type="Container">
+          <containerFiles>
+            <containerName>NicLep</containerName>
+            <basepath/>
+            <containerFile>
+              <name>404-error.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>blank.ascx</name>
+            </containerFile>
+            <containerFile>
+              <name>main.ascx</name>
+            </containerFile>            
+          </containerFiles>
+        </component>
+      </components>
+    </package>
+  </packages>
+</dotnetnuke>
