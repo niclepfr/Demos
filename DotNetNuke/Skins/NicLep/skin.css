@@ -1,0 +1,68 @@
+@import url('Resources/fonts/font-awesome/css/all.min.css');
+@import url('Resources/css/base.css');
+@import url('Resources/css/custom.min.css');
+@font-face {
+    font-family: "Catamaran";
+    font-weight:900;
+    src: url('Resources/fonts/Catamaran-Black.ttf');
+}
+@font-face {
+    font-family: "Catamaran";
+    font-weight: bold;
+    src: url('Resources/fonts/Catamaran-Bold.ttf');
+}
+@font-face {
+    font-family: "Catamaran";
+    font-weight:800;
+    src: url('Resources/fonts/Catamaran-ExtraBold.ttf');
+}
+@font-face {
+    font-family: "Catamaran";
+    font-weight:100;
+    src: url('Resources/fonts/Catamaran-ExtraLight.ttf');
+}
+@font-face {
+    font-family: "Catamaran";
+    font-weight:200;
+    src: url('Resources/fonts/Catamaran-Light.ttf');
+}
+@font-face {
+    font-family: "Catamaran";
+    font-weight:500;
+    src: url('Resources/fonts/Catamaran-Medium.ttf');
+}
+@font-face {
+    font-family: "Catamaran";
+    /*font-weight:400;*/
+    src: url('Resources/fonts/Catamaran-Regular.ttf');
+}
+@font-face {
+    font-family: "Catamaran";
+    font-weight:600;
+    src: url('Resources/fonts/Catamaran-SemiBold.ttf');
+}
+@font-face {
+    font-family: "Catamaran";
+    font-weight:300;
+    src: url('Resources/fonts/Catamaran-Thin.ttf');
+}
+@font-face {
+    font-family: "Noticia Text";
+    font-weight:700;
+    src: url('Resources/fonts/NoticiaText-Bold.ttf');
+}
+@font-face {
+    font-family: "Noticia Text";
+    font-weight:700;
+    font-style:italic;
+    src: url('Resources/fonts/NoticiaText-BoldItalic.ttf');
+}
+@font-face {
+    font-family: "Noticia Text";
+    font-style:italic;
+    src: url('Resources/fonts/NoticiaText-Italic.ttf');
+}
+@font-face {
+    font-family: "Noticia Text";
+    src: url('Resources/fonts/NoticiaText-Regular.ttf');
+}

@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AE6A5BAC-124D-4B29-B118-EFD2D770CE36}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NicLep</RootNamespace>
+    <AssemblyName>NicLep</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">.\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DotNetNuke">
+      <HintPath>..\..\..\..\bin\DotNetNuke.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Web.Client">
+      <HintPath>..\..\..\..\bin\DotNetNuke.Web.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Auth.ascx.cs">
+      <DependentUpon>Auth.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Privacy.ascx.cs">
+      <DependentUpon>Privacy.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SkinBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Home.ascx.cs">
+      <DependentUpon>Home.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Terms.ascx.cs">
+      <DependentUpon>Terms.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="404.ascx" />
+    <Content Include="Auth.ascx" />
+    <Content Include="Containers\404-error.ascx" />
+    <Content Include="Privacy.ascx" />
+    <Content Include="Resources\css\base.css" />
+    <Content Include="Resources\css\base.min.css">
+      <DependentUpon>base.css</DependentUpon>
+    </Content>
+    <Content Include="Resources\css\custom.css" />
+    <Content Include="Resources\css\custom.min.css">
+      <DependentUpon>custom.css</DependentUpon>
+    </Content>
+    <Content Include="Resources\fonts\font-awesome\css\font-awesome.css" />
+    <Content Include="Resources\fonts\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Resources\fonts\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Resources\bootstrap\bootstrapNav\menudef.xml" />
+    <Content Include="Resources\bootstrap\bootstrapNav\BootStrapNav.js" />
+    <Content Include="Resources\bootstrap\bootstrapNav\BootStrapNav.txt" />
+    <Content Include="Containers\blank.ascx" />
+    <Content Include="Containers\main.ascx" />
+    <Content Include="Resources\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="Resources\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="Resources\bootstrap\css\bootstrap.css" />
+    <Content Include="Resources\bootstrap\css\bootstrap.min.css" />
+    <Content Include="404.doctype.xml" />
+    <Content Include="Resources\foundation\css\app.css" />
+    <Content Include="Resources\foundation\css\foundation.css" />
+    <Content Include="Resources\foundation\css\foundation.min.css" />
+    <Content Include="Resources\foundation\js\app.js" />
+    <Content Include="Resources\foundation\js\vendor\foundation.js" />
+    <Content Include="Resources\foundation\js\vendor\foundation.min.js" />
+    <Content Include="Resources\foundation\js\vendor\jquery.js" />
+    <Content Include="Resources\foundation\js\vendor\what-input.js" />
+    <Content Include="Resources\img\slidearrowl.png" />
+    <Content Include="Resources\img\slidearrowr.png" />
+    <Content Include="Resources\img\slidebtnlink.png" />
+    <Content Include="Resources\includes\consentpolicy.inc">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Resources\includes\footer.inc" />
+    <Content Include="Resources\i\icon_message_active.png" />
+    <Content Include="Resources\i\icon_notification_active.png" />
+    <Content Include="Home.doctype.xml" />
+    <Content Include="Resources\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Resources\img\error.png" />
+    <Content Include="Resources\img\error.svg" />
+    <Content Include="Resources\img\loading.gif" />
+    <Content Include="Resources\img\play-pause.png" />
+    <Content Include="Resources\img\play-pause.svg" />
+    <Content Include="Resources\img\video-play.png" />
+    <Content Include="Resources\img\video-play.svg" />
+    <Content Include="Resources\i\icon_message.png" />
+    <Content Include="Resources\i\icon_notification.png" />
+    <Content Include="Resources\bootstrap\js\bootstrap-image-gallery.min.js" />
+    <Content Include="Resources\bootstrap\js\bootstrap.js" />
+    <Content Include="Resources\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Resources\bootstrap\js\jquery.blueimp-gallery.min.js" />
+    <Content Include="License.txt" />
+    <Content Include="Resources\js\ckeditor\templates\sd.fn.templates.js" />
+    <Content Include="Resources\js\sd.dnn.skin.js" />
+    <Content Include="Resources\js\sd.dnn.skin.min.js">
+      <DependentUpon>sd.dnn.skin.js</DependentUpon>
+    </Content>
+    <Content Include="skin.css" />
+    <Content Include="ReleaseNotes.txt" />
+    <Content Include="Home.ascx" />
+    <Content Include="Terms.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="NicLep.dnn" />
+    <Content Include="Documentation\Documentation.css" />
+    <Content Include="Documentation\Documentation.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BuildScripts\SkinPackage.targets" />
+    <Content Include="BuildScripts\MSBuild.Community.Tasks.Targets" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Resources\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Resources\fonts\glyphicons-halflings-regular.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\js\ckeditor\templates\images\" />
+    <Folder Include="Resources\menus\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LICENSE" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\fonts\font-awesome\fonts\FontAwesome.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\fonts\font-awesome\fonts\fontawesome-webfont.woff2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\fonts\font-awesome\fonts\fontawesome-webfont.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\fonts\font-awesome\fonts\fontawesome-webfont.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\fonts\font-awesome\fonts\fontawesome-webfont.eot" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bundleconfig.json" />
+    <Content Include="Resources\fonts\Catamaran-Black.ttf" />
+    <Content Include="Resources\fonts\Catamaran-Bold.ttf" />
+    <Content Include="Resources\fonts\Catamaran-ExtraBold.ttf" />
+    <Content Include="Resources\fonts\Catamaran-ExtraLight.ttf" />
+    <Content Include="Resources\fonts\Catamaran-Light.ttf" />
+    <Content Include="Resources\fonts\Catamaran-Medium.ttf" />
+    <Content Include="Resources\fonts\Catamaran-Regular.ttf" />
+    <Content Include="Resources\fonts\Catamaran-SemiBold.ttf" />
+    <Content Include="Resources\fonts\Catamaran-Thin.ttf" />
+    <Content Include="Resources\fonts\NoticiaText-Bold.ttf" />
+    <Content Include="Resources\fonts\NoticiaText-BoldItalic.ttf" />
+    <Content Include="Resources\fonts\NoticiaText-Italic.ttf" />
+    <Content Include="Resources\fonts\NoticiaText-Regular.ttf" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\00.00.02.SqlDataProvider" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\Uninstall.SqlDataProvider" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\SD.Library\SD.Library.csproj">
+      <Project>{68cd5517-aaf0-429a-943f-f882f412d4a3}</Project>
+      <Name>SD.Library</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Home.ascx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Home.ascx.fr-FR.resx" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>55931</DevelopmentServerPort>
+          <DevelopmentServerVPath>
+          </DevelopmentServerVPath>
+          <IISUrl>http://dnndev.me/portals/_default/skins/NicLep</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://dnndev.me</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <Extension>zip</Extension>
+    <DNNFileName>NicLep</DNNFileName>
+    <PackageName>NicLep</PackageName>
+    <MSBuildCommunityTasksPath>$(SolutionDir)\BuildScripts</MSBuildCommunityTasksPath>
+  </PropertyGroup>
+  <Import Project="BuildScripts\SkinPackage.Targets" />
+  <Target Name="AfterBuild" DependsOnTargets="MoveContainer" />
+  <Target Name="AfterBuild" DependsOnTargets="PackageSkin">
+  </Target>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Import Project="..\..\..\..\..\packages\BuildBundlerMinifier.3.0.415\build\BuildBundlerMinifier.targets" Condition="Exists('..\..\..\..\..\packages\BuildBundlerMinifier.3.0.415\build\BuildBundlerMinifier.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Utilisez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est : {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\..\..\..\packages\BuildBundlerMinifier.3.0.415\build\BuildBundlerMinifier.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\..\packages\BuildBundlerMinifier.3.0.415\build\BuildBundlerMinifier.targets'))" />
+  </Target>
+</Project>
