@@ -1,0 +1,31 @@
+version: '3.5'
+
+services:
+  web:
+    image: dnn-platform-install:9.3.2
+    restart: always
+    depends_on:
+      - db
+    networks: 
+      default:
+        ipv4_address: 172.20.10.10 
+    expose:
+      - '80'
+      - '443' 
+    environment:
+      connection_string: 'Server=db;Database=dnn;uid=sa;pwd=password'
+  db:
+    image: dnn-platform-sql-install:9.3.2
+    networks: 
+      default:
+        ipv4_address: 172.20.10.9
+    expose:
+      - '1433'
+    environment:
+      ACCEPT_EULA: 'Y'
+      sa_password: 'password'
+      attach_dbs: '[{ "dbName": "dnn", "dbFiles": [ "C:\\db\\dnn.mdf", "C:\\db\\dnn_log.ldf" ]}]'
+
+networks:
+  default:
+    name: hyperv_switch_dock          
