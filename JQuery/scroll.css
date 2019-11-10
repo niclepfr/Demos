@@ -1,0 +1,107 @@
+.sdScrollH {
+    font-family:Trebuchet MS, Verdana, Arial; 
+    font-style:normal; 
+    font-weight:bold; 
+    overflow-x: hidden;
+    text-align: center;    
+} 
+
+.sdScrollH.columns,
+.sdScrollH.column { 
+    padding:0px;    
+}
+
+.sdScrollH-item {
+    background-color: transparent;
+    height: 25px; /* super important doit coincider avec la hauteur min de la li car sinon bug IE et FF - à modifier*/
+    width: 40px; /* super important permet de calculer la largeur */
+    position:absolute; /* super inportant car sinon pas de déplacement */
+    visibility: hidden;
+    cursor: pointer;
+    margin-top: 2px; 
+    margin-bottom: 4px;
+    visibility: hidden;
+}
+
+.sdScrollH-item > li {
+    float: right; /* permet d'ordonner correctement les li */
+    margin:0;
+    width: 100%;
+    font-size: 14px;
+    display: inline;
+}
+
+.sdScrollH .sdScrollH-BordGauche{
+    background: -webkit-linear-gradient(to right, rgba(192,192,192,1), rgba(192,192,192,0)); /* Doit être même couleur que le background de .sdScrollH */
+    background: -o-linear-gradient(to right, rgba(192,192,192,1), rgba(192,192,192,0)); /* Doit être même couleur que le background de .sdScrollH  */
+    background: -moz-linear-gradient(to right, rgba(192,192,192,1), rgba(192,192,192,0)); /* Doit être même couleur que le background de .sdScrollH  */
+    background: linear-gradient(to right,rgba(192,192,192,1), rgba(192,192,192,0)); /* Doit être même couleur que le background de .sdScrollH  */
+    position: relative;
+    float:left;
+    z-index:1;      
+}
+
+.sdScrollH .sdScrollH-BordDroite{
+    background: -webkit-linear-gradient(to left, rgba(192,192,192,1), transparent); /* Doit être même couleur que le background de .sdScrollH  */
+    background: -o-linear-gradient(to left, rgba(192,192,192,1), transparent); /* Doit être même couleur que le background de .sdScrollH  */
+    background: -moz-linear-gradient(to left, rgba(192,192,192,1), transparent); /* Doit être même couleur que le background de .sdScrollH  */
+    background: linear-gradient(to left,rgba(192,192,192,1), transparent); /* Doit être même couleur que le background de .sdScrollH  */
+    float:right;
+    clear:right;
+    position: relative;
+    z-index:1;
+}
+
+.sdScrollH-PlayPause {
+    cursor: pointer;
+    position: absolute;
+    right: 0px;
+    z-index: 10;
+    opacity: 0;
+    padding: 8px 8px;
+    background: rgba(209,209,209,0.83);
+    background: -moz-linear-gradient(top, rgba(209,209,209,0.83) 0%, rgba(254,254,254,0.83) 50%, rgba(254,254,254,0.83) 51%, rgba(209,209,209,0.83) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(209,209,209,0.83)), color-stop(50%, rgba(254,254,254,0.83)), color-stop(51%, rgba(254,254,254,0.83)), color-stop(100%, rgba(209,209,209,0.83)));
+    background: -webkit-linear-gradient(top, rgba(209,209,209,0.83) 0%, rgba(254,254,254,0.83) 50%, rgba(254,254,254,0.83) 51%, rgba(209,209,209,0.83) 100%);
+    background: -o-linear-gradient(top, rgba(209,209,209,0.83) 0%, rgba(254,254,254,0.83) 50%, rgba(254,254,254,0.83) 51%, rgba(209,209,209,0.83) 100%);
+    background: -ms-linear-gradient(top, rgba(209,209,209,0.83) 0%, rgba(254,254,254,0.83) 50%, rgba(254,254,254,0.83) 51%, rgba(209,209,209,0.83) 100%);
+    background: linear-gradient(to bottom, rgba(209,209,209,0.83) 0%, rgba(254,254,254,0.83) 50%, rgba(254,254,254,0.83) 51%, rgba(209,209,209,0.83) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d1d1d1', endColorstr='#d1d1d1', GradientType=0 );
+}
+
+.sdScrollH-PlayPause > span {
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    width: 11px;
+    height: 10px;
+    border: solid 4px rgba(236,0,139,1);
+    border-top: none;
+    border-bottom: none;
+    z-index: 10;    
+}
+
+.sdScrollH-PlayPause.paused > span {
+    width: 11px;
+    height: 10px;
+    border: none;
+    border-left: solid 14px rgba(236,0,139,1);
+    border-top: solid 6px rgba(236,0,139,0);
+    border-bottom: solid 6px rgba(236,0,139,0);
+}
+
+.sdScrollH-PlayPause:hover {
+    opacity: 1; 
+}
+
+.sdScrollH-item:hover .orbit-timer > span {
+    display: block; 
+}
+
+.sdScrollH-Layer {
+    display: none; 
+    opacity: 0;
+    z-index: 99;
+    position: absolute;
+    background: black;
+}
