@@ -55,7 +55,7 @@ namespace NLDotNet.DNN.Modules.MVCTest.Components
 
             using (IDataContext ctx = DataContext.Instance())
             {
-                iVersion = MCVTestBase.StringToInt(ctx.ExecuteScalar<Int32>(CommandType.Text, "select ISNULL(max(VersionNumber),0) AS VersionNumber from MVCTest_Items_HTMLText where ItemID=@0", t.ItemId).ToString(), 0);
+                iVersion = MVCTestBase.StringToInt(ctx.ExecuteScalar<Int32>(CommandType.Text, "select ISNULL(max(VersionNumber),0) AS VersionNumber from MVCTest_Items_HTMLText where ItemID=@0", t.ItemId).ToString(), 0);
 
                 iVersion++;
                 t.VersionNumber = iVersion;
@@ -129,9 +129,9 @@ namespace NLDotNet.DNN.Modules.MVCTest.Components
             ItemHTMLText t = null;
             try
             {
-                if (MCVTestBase.StringToInt(itemId.ToString()) > 0)
+                if (MVCTestBase.StringToInt(itemId.ToString()) > 0)
                 {
-                    if (MCVTestBase.StringToInt(iHtmlTextID.ToString()) > 0)
+                    if (MVCTestBase.StringToInt(iHtmlTextID.ToString()) > 0)
                     {
                         using (IDataContext ctx = DataContext.Instance())
                         {

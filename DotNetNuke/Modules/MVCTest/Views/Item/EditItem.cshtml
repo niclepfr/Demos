@@ -25,10 +25,11 @@
             <div class="dnnFormItem">
                 @Html.DnnLabelFor(m => Model.ItemName, Dnn.LocalizeString("EditItemName.Text"), Dnn.LocalizeString("EditItemName.Help"))
                 @Html.TextBoxFor(m => Model.ItemName, new { @class = "DnnRequiredFieldValidator" })
-                @Html.ValidationMessageFor(model => Model.ItemName, Dnn.LocalizeString("EditItemName.ErrorMessage"), new { @class = "dnnFormMessage dnnFormError" })
+                @Html.ValidationMessageFor(m => Model.ItemName, Dnn.LocalizeString("EditItemName.ErrorMessage"), new { @class = "dnnFormMessage dnnFormError" })
                 <input type="hidden" class="ValidationMessageFor" value="@Dnn.LocalizeString("EditItemName.ErrorMessage")"/>
             </div>
-
+            <span>@Model.ItemId.ToString()</span>
+            @Html.HiddenFor(m => Model.ItemId)
         </fieldset>
         @*</asp:PlaceHolder>*@
 

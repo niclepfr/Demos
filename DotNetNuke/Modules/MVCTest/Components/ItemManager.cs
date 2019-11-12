@@ -102,7 +102,7 @@ namespace NLDotNet.DNN.Modules.MVCTest.Components
                 var rep = ctx.GetRepository<Item>();
                 t = rep.GetById(itemId, moduleId);
             }
-            return t;
+            return t ?? new Item();
         }
 
         public void UpdateItem(Item t)

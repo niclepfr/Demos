@@ -83,7 +83,7 @@ namespace NLDotNet.DNN.Modules.MVCTest.Controllers
                 , ModuleContext.ModuleId
                 );
 
-            ViewBag.itemsToActive = itemsToActive;
+            ViewBag.itemsToActive = itemsArchive;/* itemsToActive;*/
             ViewBag.itemsArchive = itemsArchive;
             return View(itemsActive);
         }
@@ -152,6 +152,8 @@ namespace NLDotNet.DNN.Modules.MVCTest.Controllers
             {
                 if (item.ItemId == -1)
                 {
+                    item.ModuleId = ModuleContext.ModuleId;
+                    item.ItemIsPub = false;
                     item.ItemCreaUserID = User.UserID;
                     item.ItemCreaDate = DateTime.UtcNow.ToLocalTime();
                     item.ItemModifUserID = User.UserID;
@@ -171,7 +173,7 @@ namespace NLDotNet.DNN.Modules.MVCTest.Controllers
                     ItemManager.Instance.UpdateItem(existingItem);
                 }                                
             }
-            return View(item);
+            return View("EditItem",item);
         }
 
         /// <summary>
