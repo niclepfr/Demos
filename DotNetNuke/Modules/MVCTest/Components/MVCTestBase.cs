@@ -4,7 +4,7 @@ using System.Globalization;
 
 namespace NLDotNet.DNN.Modules.MVCTest.Components
 {
-    public static class MCVTestBase
+    public static class MVCTestBase
     {
         /// <summary>
         /// Convertit une string en decimal.
