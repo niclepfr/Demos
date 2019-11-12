@@ -1,0 +1,182 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<NLDotNet.DNN.Modules.MVCTest.Models.Item>>
+
+@using System.Globalization;
+@using System.Collections.Generic
+@using DotNetNuke.Web.Mvc.Helpers
+
+<div id="Item-@Dnn.ModuleContext.ModuleId">
+    <div class="dnnForm dnnEditBasicSettings sdfilinfo grey" id="dnnEditBasicSettings">
+        <div class="dnnFormExpandContent dnnRight "><a href="#">@Dnn.LocalizeString("ExpandAll")</a></div>
+
+        <h2 id="dnnSitePanel-BasicSettings" class="dnnFormSectionHead dnnClear">
+            <a href="#" class="dnnSectionExpanded">@Dnn.LocalizeString("ItemsActive")</a>
+        </h2>
+        <fieldset>
+            <div class="dnnFormItem sdfilinfoitems">
+
+                @if (Model.Count() == 0)
+                {
+                <ul>
+                    <li>
+                        <div>
+                            <div class="sdnew">
+                                <a href="@Url.Action("EditItem", "Item", new { ctl = "EditItem", itemId = -1 })" class="dnnPrimaryAction">@Dnn.LocalizeString("AddNewItem")</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                }
+                else
+                {
+                <ul>
+                    @foreach (var item in Model)
+                    {
+                    <li>
+                        <div class="sdfilinfoitem">
+                            <div class="sdfilinfotitre">
+                                <h2>@item.ItemName</h2>
+                            </div>
+                            <div class="sdfilinfodesc">
+                                <p>@item.ItemDescription</p>
+                            </div>
+                            <div class="sdfilinfopub">
+                                <fieldset>
+                                    <legend>Publication :</legend>
+                                    <ul class="sdfilinfodatetime">
+                                        <li>
+                                            <span>@(item.ItemPubDateStart.ToString() == @DateTime.MinValue.ToString())? "du <i>indéterminé</i>" : "du " + @String.Format(CultureInfo.CurrentCulture, "{0:dddd d MMMM yyyy à HH:mm}", Convert.ToDateTime(item.ItemPubDateStart.ToString()))</span>
+                                        </li>
+                                        <li>
+                                            <span>@(item.ItemPubDateEnd.ToString() == @DateTime.MinValue.ToString())? "au <i>indéterminé</i>" : "au " + @String.Format(CultureInfo.CurrentCulture, "{0:dddd d MMMM yyyy à HH:mm}", Convert.ToDateTime(item.ItemPubDateEnd.ToString()))</span>
+
+                                        </li>
+                                    </ul>
+                                </fieldset>
+                            </div>
+                            <div class="sdfilinfobtn">
+                                <ul class="sdfilinfoaction">
+                                    <li>
+                                        <a href="@Url.Action("ActiveItem", "Item", new { itemId = item.ItemId })">@Dnn.LocalizeString("DisplayItem")</a>
+                                    </li>
+                                    <li>                                        
+                                        <a href="@Url.Action("EditItem", "Item", new { ctl = "EditItem", itemId = item.ItemId })">@Dnn.LocalizeString("EditItem")</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    }
+
+                    <li>
+                        <div class="sdfilinfoitem">
+                            <div class="sdnew">
+                                <a href="@Url.Action("EditItem", "Item", new { ctl = "EditItem", itemId = -1 })" class="dnnPrimaryAction">@Dnn.LocalizeString("AddNewItem")</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                }
+            </div>
+
+
+            @*@Html.HiddenFor(m => m.ModuleId)*@
+        </fieldset>
+
+
+        <h2 id="dnnSitePanel-FilInfoAPublier" class="dnnFormSectionHead dnnClear">
+            <a href="#" class="dnnSectionExpanded">@Dnn.LocalizeString("ItemsToActive")</a>
+        </h2>
+        <fieldset>
+            <div class="dnnFormItem sdfilinfoitems">
+            @if (((IEnumerable<NLDotNet.DNN.Modules.MVCTest.Models.Item>)ViewBag.itemsToActive).Count() == 0)
+            {
+                <ul>
+                    <li>
+                        <div>
+                            <div class="sdnew">
+                                <a href="@Url.Action("EditItem", "Item", new { ctl = "EditItem", itemId = -1 })" class="dnnPrimaryAction">@Dnn.LocalizeString("AddNewItem")</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            }
+            else
+            {
+                <ul>
+                    @foreach (var item in (IEnumerable<NLDotNet.DNN.Modules.MVCTest.Models.Item>)ViewBag.itemsToActive)
+                    {
+                        <li>
+                            <div class="sdfilinfoitem">
+                                <div class="sdfilinfotitre">
+                                    <h2>@item.ItemName</h2>
+                                </div>
+                                <div class="sdfilinfodesc">
+                                    <p>@item.ItemDescription</p>
+                                </div>
+                                <div class="sdfilinfopub">
+                                    <fieldset>
+                                        <legend>Publication :</legend>
+                                        <ul class="sdfilinfodatetime">
+                                            <li>
+                                                <span>@(item.ItemPubDateStart.ToString() == @DateTime.MinValue.ToString())? "du <i>indéterminé</i>" : "du " + @String.Format(CultureInfo.CurrentCulture, "{0:dddd d MMMM yyyy à HH:mm}", Convert.ToDateTime(item.ItemPubDateStart.ToString()))</span>
+                                            </li>
+                                            <li>
+                                                <span>@(item.ItemPubDateStart.ToString() == @DateTime.MinValue.ToString())? "du <i>indéterminé</i>" : "du " + @String.Format(CultureInfo.CurrentCulture, "{0:dddd d MMMM yyyy à HH:mm}", Convert.ToDateTime(item.ItemPubDateStart.ToString()))</span>
+                                            </li>
+                                        </ul>
+                                    </fieldset>
+                                </div>
+                                <div class="sdfilinfobtn">
+                                    <ul class="sdfilinfoaction">
+                                        <li>
+                                            <a href="@Url.Action("ActiveItem", "Item", new { ctl = "EditItem", itemId = item.ItemId })">@Dnn.LocalizeString("ActiveItem")</a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("EditItem", "Item", new { ctl = "EditItem", itemId = item.ItemId })">@Dnn.LocalizeString("EditItem")</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    }
+
+                    <li>
+                        <div class="sdfilinfoitem">
+                            <div class="sdnew">
+                                <asp:HyperLink ID="btnAddNewItem" runat="server" CssClass="dnnPrimaryAction"
+                                               resourcekey="btnAddNewItem"></asp:HyperLink>
+                                <a href="@Url.Action("EditItem", "Item", new { ctl = "EditItem", itemId = -1 })" class="dnnPrimaryAction">@Dnn.LocalizeString("AddNewItem")</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            }
+            </div>
+
+
+            @*@Html.HiddenFor(m => m.ModuleId)*@
+        </fieldset>
+
+</div>
+    <button type="submit" class="dnnPrimaryAction">@Dnn.LocalizeString("Submit")</button>
+    <a id="cancelEdit" href="#" class="dnnSecondaryAction">@Dnn.LocalizeString("Cancel")</a>
+</div>
+
+<script type="text/javascript">
+    /*globals jQuery, window, Sys */
+    (function($, Sys) {
+        function dnnEditBasicSettings() {
+            $('#dnnEditBasicSettings').dnnPanels();
+            $('#dnnEditBasicSettings .dnnFormExpandContent a').dnnExpandAll({ expandText: '@Dnn.LocalizeString("ExpandAll")', collapseText: '@Dnn.LocalizeString("CollapseAll")', targetArea: '#dnnEditBasicSettings' });
+        }
+
+        $(function() {
+            $('#cancelEdit').click(function() { dnnModal.closePopUp(false); });
+            dnnEditBasicSettings();
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function() {
+                dnnEditBasicSettings();
+            });
+        });
+
+    }(jQuery, window.Sys));
+</script>

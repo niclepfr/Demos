@@ -1,0 +1,252 @@
+
+
+.dnnFormRadioButtons.display-table{display:table;}
+
+.hide {display: none;}
+
+/* VIEW */
+
+ul { 
+    list-style-type: none;
+}
+
+.sdfi.column,
+.sdfi.columns {
+    padding: 0px;
+}
+
+.sdfi ul { margin: 0px;}
+
+/* SETTINGS */
+
+.sdfilinfo,
+.sdfilinfo div,
+.sdfilinfo h2,
+.sdfilinfo legend,
+.sdfilinfo span,
+.sdfilinfo p
+{
+    font-family: "Trebuchet MS", Verdana, Tahoma;    
+}
+
+
+.sdfilinfo.blue .sdfilinfoitems > ul > li {
+    border-color: rgba(3, 86, 158, 0.8);
+    -webkit-box-shadow: 0px 1px 0px 0px rgba(3, 86, 158, 0.8), inset 0px 1px 2px 0px rgba(3, 86, 158, 0.1);
+    box-shadow: 0px 1px 0px 0px rgba(3, 86, 158, 0.8), inset 0px 1px 2px 0px rgba(3, 86, 158, 0.1);
+}
+
+.sdfilinfo.blue .sdfilinfoitems .sdfilinfoitem {
+    background: linear-gradient(to top,rgba(2,139,255,0.05),rgba(2,139,255,0.2));
+    color: rgba(3, 86, 158,1);
+}
+
+.sdfilinfo.blue .sdfilinfoitem .sdfilinfotitre h2{
+    color: rgb(255, 255, 255);
+    text-shadow: -1px -1px 0 rgba(3, 86, 158, 0.8), 1px -1px 0 rgba(3, 86, 158, 0.8), -1px 1px 0 rgba(3, 86, 158, 0.8), 1px 1px 0 rgba(3, 86, 158, 0.8);
+}
+
+.sdfilinfo.grey .sdfilinfoitems > ul > li {
+    border-color: rgba(194, 194, 194, 0.8);
+    -webkit-box-shadow: 0px 1px 0px 0px rgba(232, 232, 232, 0.8), inset 0px 1px 2px 0px rgba(232, 232, 232, 0.1);
+    box-shadow: 0px 1px 0px 0px rgba(232, 232, 232, 0.8), inset 0px 1px 2px 0px rgba(232, 232, 232, 0.1);
+}
+
+.sdfilinfo.grey .sdfilinfoitems .sdfilinfoitem {
+    background: linear-gradient(to top,rgba(254, 254, 254,0.05),rgba(205, 205, 205, 0.99));
+    color: rgb(66, 66, 66);
+}
+
+.sdfilinfo.grey .sdfilinfoitem .sdfilinfotitre h2{
+    /*color: rgb(255, 255, 255);
+    text-shadow: -1px -1px 0 rgba(117, 117, 117, 0.8), 1px -1px 0 rgba(117, 117, 117, 0.8), -1px 1px 0 rgba(117, 117, 117, 0.8), 1px 1px 0 rgba(117, 117, 117, 0.8);*/
+    color: rgb(66, 66, 66);
+    text-shadow: -1px -1px 0 rgba(255, 255, 255, 0.8), 1px -1px 0 rgba(255, 255, 255, 0.8), -1px 1px 0 rgba(255, 255, 255, 0.8), 1px 1px 0 rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+}
+
+.sdfilinfo ul {
+    margin: 10px 0 10px 20px;    
+}
+
+.sdfilinfo .sdfilinfoitems > ul > li {
+    width : 45%; /* ou 300px*/
+    min-height: 195px;
+    height:auto;
+    display : inline-block;
+    text-decoration:none;
+    margin: 10px 1%;
+    padding: 8px;
+    background: #ffffff;
+    border-width: 1px;
+    border-style: solid;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;    
+}
+
+.sdfilinfo ul li div.sdfilinfoitemsend {
+        opacity:0;
+        filter: alpha(opacity=0);
+        border:1px solid black;
+}
+
+.sdfilinfo .sdfilinfoitems > ul > li > span {
+    font-weight:bold;
+    font-size: 12px;
+    width: 95%;
+}
+
+.sdfilinfo label{
+    box-sizing: border-box;
+    color: #4D4D4D;
+    cursor: pointer;
+    display: block;
+    font-family: "Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
+    font-size: 12.45px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18.6833px;
+    margin-bottom: 0px;
+}
+
+.dnnFormItem.sdfilinfoitems input[type="text"] {
+    width: 95%;
+}
+
+.sdfilinfo .sdfilinfoitems .sdfilinfoitem h3,
+.sdfilinfo .sdfilinfoitems .sdfilinfoitem span,
+.sdfilinfo .sdfilinfoitems .sdfilinfoitem div {
+    text-align: center;
+}
+
+.sdfilinfo ul.sdfilinfodatetime {
+    width: 100%;
+    margin: 0;
+    padding: 8px 4px 12px 4px;
+    list-style-type: none;
+    text-align: center;
+}
+
+.sdfilinfo ul.sdfilinfodatetime li {
+    border:0px;
+    text-decoration:none;
+    margin: 0;
+    padding-left: 2px;
+    text-align: center;
+}
+
+.sdfilinfo .rcInputCell {
+    max-width: 130px;
+    font-weight: bold;
+}
+
+.sdfilinfo .rcInputCell input[type="text"] {
+    min-width: 130px;
+    font-weight: bold;
+}
+
+.sdfilinfo ul.sdfilinfoaction {
+    width: 100%;
+    margin: 0;
+    text-align: center;    
+}
+.sdfilinfo ul.sdfilinfoaction li {
+    width : auto; /* ou 300px*/
+    height:24px;
+    border:0px;
+    display : inline-block;
+    text-decoration:none;
+    margin-right:20px;
+    padding: 2px;
+    text-align: center;    
+}
+
+.sdfilinfo .sdnew {
+    position: relative;
+    margin-top: 80px;
+    text-align:center;
+    height: 40px;
+}
+
+.sdfilinfo .sdfilinfoitem .sdfilinfotitre {
+    padding-top:10px;
+}
+
+.sdfilinfo .sdfilinfoitem .sdfilinfodesc {
+    padding: 8px;   
+    margin-bottom: 4px;
+}
+
+.sdfilinfo .sdfilinfoitem p {
+    font-style: italic;
+    text-align:start;
+    margin-bottom: 0px;
+    height: 20px;
+    line-height: 20px;
+    overflow: hidden;   
+}
+
+.sdfilinfo .sdfilinfoitem .sdfilinfopub {
+    font-weight: bold;
+    text-transform:capitalize;
+}
+
+.sdfilinfo .sdfilinfoitem div.sdfilinfopub fieldset legend {
+    font-weight: normal;
+    font-size: 11px;
+    font-style: italic;
+    text-indent: 4px;
+}
+
+.sdfilinfo .sdfilinfoitem div.sdfilinfopub fieldset {
+    border-left: 1px solid rgb(242, 242, 242);
+    border-top: 1px solid rgb(242, 242, 242);
+    border-bottom: 1px solid rgb(202, 202, 202);
+    border-right: 0px;
+    margin-bottom: 12px;
+}
+
+.sdfilinfo .sdfilinfoitem .sdfilinfobtn {
+    padding-bottom: 16px;
+}
+
+.sdfilinfo .sdfilinfoitemempty { text-align: center;}
+
+.sdfilinfo .sdfilinfoitems .sdfilinfobtn .sdfilinfoaction a.red {
+    background-image: -webkit-linear-gradient(top, rgb(255, 149, 149) 0%, rgb(255, 74, 74) 100%);
+    border-color: rgb(230, 0, 0);
+    text-shadow: rgb(230, 74, 74) 0px -1px 0px;
+    color: rgba(255, 255, 255, 1);
+}
+
+.sdfilinfo .sdfilinfoitems .sdfilinfobtn .sdfilinfoaction a.green {
+    background-image: -webkit-linear-gradient(top, rgb(94, 225, 176) 0%, rgb(37, 203, 141) 100%);
+    border-color: rgb(26, 140, 98);
+    text-shadow: rgb(37, 203, 141) 0px -1px 0px;
+    color: rgba(255, 255, 255, 1);
+}
+
+.sdfi button[class*="orbit"],
+.sdfi nav.orbit-bullets button {
+    cursor: pointer;    
+}
+
+.sdfi.orbit ul.orbit-container li > article > div > div,
+.sdfi.orbit ul.orbit-container li > article > div > span,
+.sdfi.orbit ul.orbit-container li > article > div > p {
+    padding: 32px 64px;
+}
+
+button, .button {
+    background-color: #008CBA;
+}
+
+.dnnModuleSettings .dnnFormRadioButtons.rblOuiNon{
+    min-width: 150px;
+    width: 150px;
+    margin-top: 0 !important;
+}
+
+.dnnModuleSettings .dnnFormRadioButtons.rblOuiNon label{
+    margin-right:20px;
+}

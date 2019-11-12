@@ -1,0 +1,84 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<NLDotNet.DNN.Modules.MVCTest.Models.Item>
+
+@using System.Globalization;
+@using System.Collections.Generic
+@using DotNetNuke.Web.Mvc.Helpers
+@using Telerik.Web.UI
+@using NLDotNet.DNN.Modules.MVCTest.Components.Web.Helpers
+
+<div id="EditItem-@Dnn.ModuleContext.ModuleId">
+    <div class="dnnForm dnnEditBasicSettings" id="dnnEditItemContent">
+
+        @*@Html.ValidationSummary(true)*@
+        
+        @*<asp:PlaceHolder ID="phEditItem" runat="server">*@
+        <div class="dnnFormExpandContent dnnRight">
+            <a href="">@Dnn.LocalizeString("ExpandAll")</a>
+        </div>
+
+        <h2 id="dnnSitePanel-ItemBasicSettings" class="dnnFormSectionHead dnnClear">
+            <a href="" class="dnnSectionExpanded">
+                @Dnn.LocalizeString("EditItemBasicSettings")
+            </a>
+        </h2>
+        <fieldset>
+            <div class="dnnFormItem">
+                @Html.DnnLabelFor(m => Model.ItemName, Dnn.LocalizeString("EditItemName.Text"), Dnn.LocalizeString("EditItemName.Help"))
+                @Html.TextBoxFor(m => Model.ItemName, new { @class = "DnnRequiredFieldValidator" })
+                @Html.ValidationMessageFor(model => Model.ItemName, Dnn.LocalizeString("EditItemName.ErrorMessage"), new { @class = "dnnFormMessage dnnFormError" })
+                <input type="hidden" class="ValidationMessageFor" value="@Dnn.LocalizeString("EditItemName.ErrorMessage")"/>
+            </div>
+
+        </fieldset>
+        @*</asp:PlaceHolder>*@
+
+    </div>
+    <button type="submit" class="dnnPrimaryAction">@Dnn.LocalizeString("Submit")</button>
+    <a href="@Url.Action("Edit", "Item", new {ctl = "Edit"})" class="dnnSecondaryAction">@Dnn.LocalizeString("Cancel")</a>
+</div>
+
+<script type="text/javascript">
+
+    /*globals jQuery, window, Sys */
+    (function($, Sys) {
+        function dnnEditBasicSettings() {
+            $('#dnnEditBasicSettings').dnnPanels();
+            $('#dnnEditBasicSettings .dnnFormExpandContent a').dnnExpandAll({ expandText: '@Dnn.LocalizeString("ExpandAll")', collapseText: '@Dnn.LocalizeString("CollapseAll")', targetArea: '#dnnEditBasicSettings' });
+        }
+
+        function RequiredFieldValidator(source) {
+            if ($(source).length == 0) { return true; }
+            if (/^\s*$/.test($(source).val())) { return false; }
+            return true;
+        }
+
+        $(function() {
+            $('#cancelEdit').click(function() { dnnModal.closePopUp(false); });
+            dnnEditBasicSettings();
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function() {
+                dnnEditBasicSettings();
+            });
+        });
+
+        $(function() {
+            $('form').on('submit', function (e) {
+                e.preventDefault();
+                var isValid = true;
+                $('#EditItem-@Dnn.ModuleContext.ModuleId input.DnnRequiredFieldValidator').each(function (_index, _obj) {
+                    isValid = RequiredFieldValidator(_obj);
+                    if (!isValid) {
+                        if ($(_obj).next('span.dnnFormMessage.dnnFormError').length == 0) {
+                            $(_obj).after('<span class=\"dnnFormMessage dnnFormError\">' + $(_obj).next('input.ValidationMessageFor[type="hidden"]').val() + '</span>');
+                        } else {
+                            $(_obj).next().show();
+                        }
+                    }
+                });
+                if (isValid)
+                    $(this).unbind('submit').submit();
+            });
+        });
+
+    }(jQuery, window.Sys));        
+
+</script>

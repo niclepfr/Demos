@@ -1,0 +1,14 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<NLDotNet.DNN.Modules.MVCTest.Models.Settings>
+
+<div class="dnnFormItem">
+    <div class="dnnLabel" style="position: relative;">
+       @Html.LabelFor(m => m.SettingValue, new { @class = "col-md-2 control-label" })
+    </div>
+    @Html.TextBoxFor(m => m.SettingValue)
+    @Html.HiddenFor(m => m.CreatedByUserId)
+    @Html.HiddenFor(m => m.CreatedOnDate)
+    @Html.HiddenFor(m => m.LastModifiedByUserId)
+    @Html.HiddenFor(m => m.LastModifiedOnDate)
+    @Html.HiddenFor(m => m.ModuleId)
+    @Html.HiddenFor(m => m.SettingId)
+</div>
