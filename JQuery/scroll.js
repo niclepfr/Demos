@@ -9,12 +9,12 @@
  * Exemple utilisation :
  * $('ul#id_tag').sdScroll({ duration: 20000, scroll: "horizontal", direction: "left", double_scroll: true, fade_border: true, pause_onhover: true, div_bgcolor: 'rgb(255,255,255)' });
  * Template html :
- * <div class="columns sdScrollH" id="div_sdScrollH">
+ * <div class="columns">
  *   <div class="sdScrollH-BordGauche"></div>
  *   <div class="sdScrollH-BordDroite"></div>
  *   <div class="sdScrollH-Layer"></div>
- *   <div class="sdScrollH-PlayPause paused" style="height: 31px; width: 31px;"><span></span></div>
- *   <ul class="inline-list">
+ *   <div class="sdScrollH-PlayPause"><span></span></div>
+ *   <ul>
  *   <li><p>Texte du message défilant</p></li>
  *   </ul>
  * </div>
