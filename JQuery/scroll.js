@@ -14,7 +14,7 @@
  *   <div class="sdScrollH-BordDroite"></div>
  *   <div class="sdScrollH-Layer"></div>
  *   <div class="sdScrollH-PlayPause paused" style="height: 31px; width: 31px;"><span></span></div>
- *   <ul class="inline-list sdScrollH-item">
+ *   <ul class="inline-list">
  *   <li><p>Texte du message défilant</p></li>
  *   </ul>
  * </div>
