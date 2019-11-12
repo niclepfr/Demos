@@ -173,7 +173,8 @@ namespace NLDotNet.DNN.Modules.MVCTest.Controllers
                     ItemManager.Instance.UpdateItem(existingItem);
                 }                                
             }
-            return View("EditItem",item);
+            ModelState.Clear();
+            return View("EditItem",item);            
         }
 
         /// <summary>

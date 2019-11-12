@@ -109,6 +109,7 @@ namespace NLDotNet.DNN.Modules.MVCTest.Components
         {
             using (IDataContext ctx = DataContext.Instance())
             {
+                t = (Item)PPUtils.NullableToDbNull(t);
                 var rep = ctx.GetRepository<Item>();
                 rep.Update(t);
             }

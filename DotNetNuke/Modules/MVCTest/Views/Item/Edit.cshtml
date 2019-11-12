@@ -44,11 +44,10 @@
                                     <legend>Publication :</legend>
                                     <ul class="sdfilinfodatetime">
                                         <li>
-                                            <span>@(item.ItemPubDateStart.ToString() == @DateTime.MinValue.ToString())? "du <i>indéterminé</i>" : "du " + @String.Format(CultureInfo.CurrentCulture, "{0:dddd d MMMM yyyy à HH:mm}", Convert.ToDateTime(item.ItemPubDateStart.ToString()))</span>
+                                            @((item.ItemPubDateStart.ToString() == @DateTime.MinValue.ToString()) ? new HtmlString("<span>du <i>indéterminé</i></span>") : new HtmlString("<span>du " + @String.Format(CultureInfo.CurrentCulture, "{ 0:dddd d MMMM yyyy à HH:mm}", Convert.ToDateTime(item.ItemPubDateStart.ToString())) + "</span>"))
                                         </li>
                                         <li>
-                                            <span>@(item.ItemPubDateEnd.ToString() == @DateTime.MinValue.ToString())? "au <i>indéterminé</i>" : "au " + @String.Format(CultureInfo.CurrentCulture, "{0:dddd d MMMM yyyy à HH:mm}", Convert.ToDateTime(item.ItemPubDateEnd.ToString()))</span>
-
+                                            @((item.ItemPubDateEnd.ToString() == @DateTime.MinValue.ToString()) ? new HtmlString("<span>du <i>indéterminé</i></span>") : new HtmlString("<span>du " + @String.Format(CultureInfo.CurrentCulture, "{ 0:dddd d MMMM yyyy à HH:mm}", Convert.ToDateTime(item.ItemPubDateEnd.ToString())) + "</span>"))
                                         </li>
                                     </ul>
                                 </fieldset>
@@ -118,10 +117,10 @@
                                         <legend>Publication :</legend>
                                         <ul class="sdfilinfodatetime">
                                             <li>
-                                                <span>@(item.ItemPubDateStart.ToString() == @DateTime.MinValue.ToString())? "du <i>indéterminé</i>" : "du " + @String.Format(CultureInfo.CurrentCulture, "{0:dddd d MMMM yyyy à HH:mm}", Convert.ToDateTime(item.ItemPubDateStart.ToString()))</span>
+                                                @((item.ItemPubDateStart.ToString() == @DateTime.MinValue.ToString())? new HtmlString("<span>du <i>indéterminé</i></span>") : new HtmlString("<span>du " + @String.Format(CultureInfo.CurrentCulture, "{ 0:dddd d MMMM yyyy à HH:mm}", Convert.ToDateTime(item.ItemPubDateStart.ToString())) + "</span>"))
                                             </li>
                                             <li>
-                                                <span>@(item.ItemPubDateStart.ToString() == @DateTime.MinValue.ToString())? "du <i>indéterminé</i>" : "du " + @String.Format(CultureInfo.CurrentCulture, "{0:dddd d MMMM yyyy à HH:mm}", Convert.ToDateTime(item.ItemPubDateStart.ToString()))</span>
+                                                @((item.ItemPubDateEnd.ToString() == @DateTime.MinValue.ToString()) ? new HtmlString("<span>du <i>indéterminé</i></span>") : new HtmlString("<span>du " + @String.Format(CultureInfo.CurrentCulture, "{ 0:dddd d MMMM yyyy à HH:mm}", Convert.ToDateTime(item.ItemPubDateEnd.ToString())) + "</span>"))
                                             </li>
                                         </ul>
                                     </fieldset>
