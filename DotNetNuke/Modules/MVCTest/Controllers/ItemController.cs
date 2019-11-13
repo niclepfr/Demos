@@ -54,10 +54,15 @@ namespace NLDotNet.DNN.Modules.MVCTest.Controllers
         /// </summary>
         /// <param name="itemId"></param>
         /// <returns></returns>
-        public ActionResult Delete(int itemId)
+        public ActionResult DeleteItem(int itemId)
         {
-            ItemManager.Instance.DeleteItem(itemId, ModuleContext.ModuleId);
-            return RedirectToDefaultRoute();
+            if(itemId>0)
+                ItemManager.Instance.DeleteItem(itemId, ModuleContext.ModuleId);
+
+            //return RedirectToDefaultRoute();
+            
+            ModelState.Clear();
+            return ViewEdit();
         }
 
         /// <summary>
@@ -66,26 +71,7 @@ namespace NLDotNet.DNN.Modules.MVCTest.Controllers
         /// <returns></returns>
         public ActionResult Edit()
         {
-            DotNetNuke.Framework.JavaScriptLibraries.JavaScript.RequestRegistration(CommonJs.DnnPlugins);
-
-            var itemsActive = ItemManager.Instance.GetItems(
-                ItemManager.Instance.GetItemsSQLRequest((_itemDisplayOrder.Equals("ASC",StringComparison.InvariantCultureIgnoreCase))? "GetItemsActiveOrderByDateDePubASC" : "GetItemsActiveOrderByDateDePubDESC")
-                ,ModuleContext.ModuleId
-                );
-
-            var itemsToActive = ItemManager.Instance.GetItems(
-                ItemManager.Instance.GetItemsSQLRequest("GetItemsToActive")
-                , ModuleContext.ModuleId
-                );
-
-            var itemsArchive = ItemManager.Instance.GetItems(
-                ItemManager.Instance.GetItemsSQLRequest("GetItemsArchive")
-                , ModuleContext.ModuleId
-                );
-
-            ViewBag.itemsToActive = itemsArchive;/* itemsToActive;*/
-            ViewBag.itemsArchive = itemsArchive;
-            return View(itemsActive);
+            return ViewEdit();
         }
 
         /// <summary>
@@ -188,21 +174,30 @@ namespace NLDotNet.DNN.Modules.MVCTest.Controllers
 
             if(itemId>0)
             {
-                var _item = ItemManager.Instance.GetItem(itemId, ModuleContext.ModuleId);
-                if ((_item != null) && (_item.ItemId > 0))
+                var item = ItemManager.Instance.GetItem(itemId, ModuleContext.ModuleId);
+                if ((item != null) && (item.ItemId > 0))
                 {
-                    _item.ItemIsPub = !_item.ItemIsPub;
-                    _item.ItemModifUserID = User.UserID;
-                    _item.ItemModifDate = DateTime.UtcNow.ToLocalTime();
-                    ItemManager.Instance.UpdateItem(_item);
+                    item.ItemIsPub = !item.ItemIsPub;
+                    item.ItemModifUserID = User.UserID;
+                    item.ItemModifDate = DateTime.UtcNow.ToLocalTime();
+                    ItemManager.Instance.UpdateItem(item);
                 }
-            }            
-            return View(
-                ItemHtmlTextManager.Instance.GetItemsToView(ModuleContext.ModuleId,
-                (string.IsNullOrWhiteSpace(_itemDisplayOrder)) ? "ASC" : _itemDisplayOrder)
-                );
+            }
+
+            ModelState.Clear();
+
+            //return View(
+            //    ItemHtmlTextManager.Instance.GetItemsToView(ModuleContext.ModuleId,
+            //    (string.IsNullOrWhiteSpace(_itemDisplayOrder)) ? "ASC" : _itemDisplayOrder)
+            //    );
+
+            return ViewEdit();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [ModuleAction(ControlKey = "Edit", TitleKey = "AddItem")]
         public ActionResult Index()
         {
@@ -221,6 +216,33 @@ namespace NLDotNet.DNN.Modules.MVCTest.Controllers
         public string FormatToHtmlText(string _nText)
         {
             return HtmlTextController.FormatHtmlText(ModuleContext.ModuleId ,_nText, new HtmlModuleSettings(), ModuleContext.PortalSettings,(Page)HttpContext.CurrentHandler);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private ActionResult ViewEdit()
+        {
+            DotNetNuke.Framework.JavaScriptLibraries.JavaScript.RequestRegistration(CommonJs.DnnPlugins);
+
+            var itemsActive = ItemManager.Instance.GetItems(
+                ItemManager.Instance.GetItemsSQLRequest((_itemDisplayOrder.Equals("ASC", StringComparison.InvariantCultureIgnoreCase)) ? "GetItemsActiveOrderByDateDePubASC" : "GetItemsActiveOrderByDateDePubDESC")
+                , ModuleContext.ModuleId
+                );
+
+            var itemsToActive = ItemManager.Instance.GetItems(
+                ItemManager.Instance.GetItemsSQLRequest("GetItemsToActive")
+                , ModuleContext.ModuleId
+                );
+
+            var itemsArchive = ItemManager.Instance.GetItems(
+                ItemManager.Instance.GetItemsSQLRequest("GetItemsArchive")
+                , ModuleContext.ModuleId
+                );
+
+            ViewBag.itemsToActive = itemsToActive;
+            ViewBag.itemsArchive = itemsArchive;
+            return View("Edit",itemsActive);
         }
 
     }

@@ -34,11 +34,19 @@ namespace NLDotNet.DNN.Modules.MVCTest.Components
 
     class ItemManager : ServiceLocator<IItemManager, ItemManager>, IItemManager
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         protected override System.Func<IItemManager> GetFactory()
         {
             return () => new ItemManager();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="t"></param>
         public void CreateItem(Item t)
         {
             using (IDataContext ctx = DataContext.Instance())
@@ -49,21 +57,39 @@ namespace NLDotNet.DNN.Modules.MVCTest.Components
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="itemId"></param>
+        /// <param name="moduleId"></param>
         public void DeleteItem(int itemId, int moduleId)
         {
             var t = GetItem(itemId, moduleId);
             DeleteItem(t);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="t"></param>
         public void DeleteItem(Item t)
         {
-            using (IDataContext ctx = DataContext.Instance())
+            if((t != null) && (t.ItemId>0))
             {
-                var rep = ctx.GetRepository<Item>();
-                rep.Delete(t);
-            }
+                ItemHtmlTextManager.Instance.DeleteItemHTMLText(t.ItemId);
+                using (IDataContext ctx = DataContext.Instance())
+                {
+                    var rep = ctx.GetRepository<Item>();
+                    rep.Delete(t);
+                }
+            }            
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="moduleId"></param>
+        /// <returns></returns>
         public IEnumerable<Item> GetItems(int moduleId)
         {
             IEnumerable<Item> t;
@@ -94,6 +120,12 @@ namespace NLDotNet.DNN.Modules.MVCTest.Components
             return ts ?? Enumerable.Empty<Item>();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="itemId"></param>
+        /// <param name="moduleId"></param>
+        /// <returns></returns>
         public Item GetItem(int itemId, int moduleId)
         {
             Item t;
@@ -105,6 +137,10 @@ namespace NLDotNet.DNN.Modules.MVCTest.Components
             return t ?? new Item();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="t"></param>
         public void UpdateItem(Item t)
         {
             using (IDataContext ctx = DataContext.Instance())

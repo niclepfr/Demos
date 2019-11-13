@@ -44,10 +44,10 @@
                                     <legend>Publication :</legend>
                                     <ul class="sdfilinfodatetime">
                                         <li>
-                                            @((item.ItemPubDateStart.ToString() == @DateTime.MinValue.ToString()) ? new HtmlString("<span>du <i>indéterminé</i></span>") : new HtmlString("<span>du " + @String.Format(CultureInfo.CurrentCulture, "{ 0:dddd d MMMM yyyy à HH:mm}", Convert.ToDateTime(item.ItemPubDateStart.ToString())) + "</span>"))
+                                            @(item.ItemPubDateStart.HasValue ? new HtmlString("<span>du " + String.Format(CultureInfo.CurrentCulture, "{ 0:dddd d MMMM yyyy à HH:mm}", Convert.ToDateTime(item.ItemPubDateStart.ToString())) + "</span>") : new HtmlString("<span>du <i>indéterminé</i></span>"))
                                         </li>
                                         <li>
-                                            @((item.ItemPubDateEnd.ToString() == @DateTime.MinValue.ToString()) ? new HtmlString("<span>du <i>indéterminé</i></span>") : new HtmlString("<span>du " + @String.Format(CultureInfo.CurrentCulture, "{ 0:dddd d MMMM yyyy à HH:mm}", Convert.ToDateTime(item.ItemPubDateEnd.ToString())) + "</span>"))
+                                            @(item.ItemPubDateEnd.HasValue ? new HtmlString("<span>du " + String.Format(CultureInfo.CurrentCulture, "{ 0:dddd d MMMM yyyy à HH:mm}", Convert.ToDateTime(item.ItemPubDateEnd.ToString())) + "</span>") : new HtmlString("<span>du <i>indéterminé</i></span>"))
                                         </li>
                                     </ul>
                                 </fieldset>
@@ -55,7 +55,7 @@
                             <div class="sdfilinfobtn">
                                 <ul class="sdfilinfoaction">
                                     <li>
-                                        <a href="@Url.Action("ActiveItem", "Item", new { itemId = item.ItemId })">@Dnn.LocalizeString("DisplayItem")</a>
+                                        <a href="@Url.Action("ActiveItem", "Item", new { itemId = item.ItemId })" class="dnnSecondaryAction red">@Dnn.LocalizeString("DesactiveItem")</a>
                                     </li>
                                     <li>                                        
                                         <a href="@Url.Action("EditItem", "Item", new { ctl = "EditItem", itemId = item.ItemId })">@Dnn.LocalizeString("EditItem")</a>
@@ -80,7 +80,6 @@
 
             @*@Html.HiddenFor(m => m.ModuleId)*@
         </fieldset>
-
 
         <h2 id="dnnSitePanel-FilInfoAPublier" class="dnnFormSectionHead dnnClear">
             <a href="#" class="dnnSectionExpanded">@Dnn.LocalizeString("ItemsToActive")</a>
@@ -117,10 +116,10 @@
                                         <legend>Publication :</legend>
                                         <ul class="sdfilinfodatetime">
                                             <li>
-                                                @((item.ItemPubDateStart.ToString() == @DateTime.MinValue.ToString())? new HtmlString("<span>du <i>indéterminé</i></span>") : new HtmlString("<span>du " + @String.Format(CultureInfo.CurrentCulture, "{ 0:dddd d MMMM yyyy à HH:mm}", Convert.ToDateTime(item.ItemPubDateStart.ToString())) + "</span>"))
+                                                @(item.ItemPubDateStart.HasValue ? new HtmlString("<span>du " + String.Format(CultureInfo.CurrentCulture, "{ 0:dddd d MMMM yyyy à HH:mm}", Convert.ToDateTime(item.ItemPubDateStart.ToString())) + "</span>") : new HtmlString("<span>du <i>indéterminé</i></span>"))
                                             </li>
                                             <li>
-                                                @((item.ItemPubDateEnd.ToString() == @DateTime.MinValue.ToString()) ? new HtmlString("<span>du <i>indéterminé</i></span>") : new HtmlString("<span>du " + @String.Format(CultureInfo.CurrentCulture, "{ 0:dddd d MMMM yyyy à HH:mm}", Convert.ToDateTime(item.ItemPubDateEnd.ToString())) + "</span>"))
+                                                @(item.ItemPubDateEnd.HasValue ? new HtmlString("<span>du " + String.Format(CultureInfo.CurrentCulture, "{ 0:dddd d MMMM yyyy à HH:mm}", Convert.ToDateTime(item.ItemPubDateEnd.ToString())) + "</span>") : new HtmlString("<span>du <i>indéterminé</i></span>"))
                                             </li>
                                         </ul>
                                     </fieldset>
@@ -128,10 +127,10 @@
                                 <div class="sdfilinfobtn">
                                     <ul class="sdfilinfoaction">
                                         <li>
-                                            <a href="@Url.Action("ActiveItem", "Item", new { ctl = "EditItem", itemId = item.ItemId })">@Dnn.LocalizeString("ActiveItem")</a>
+                                            <a href="@Url.Action("ActiveItem", "Item", new { ctl = "EditItem", itemId = item.ItemId })" class="dnnSecondaryAction green">@Dnn.LocalizeString("ActiveItem.Text")</a>
                                         </li>
                                         <li>
-                                            <a href="@Url.Action("EditItem", "Item", new { ctl = "EditItem", itemId = item.ItemId })">@Dnn.LocalizeString("EditItem")</a>
+                                            <a href="@Url.Action("EditItem", "Item", new { ctl = "EditItem", itemId = item.ItemId })" class="dnnSecondaryAction">@Dnn.LocalizeString("EditItem")</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -155,6 +154,82 @@
 
             @*@Html.HiddenFor(m => m.ModuleId)*@
         </fieldset>
+
+
+        <h2 id="dnnSitePanel-FilInfoAPublier" class="dnnFormSectionHead dnnClear">
+            <a href="#" class="dnnSectionExpanded">@Dnn.LocalizeString("ItemsArchive")</a>
+        </h2>
+        <fieldset>
+            <div class="dnnFormItem sdfilinfoitems">
+                @if (((IEnumerable<NLDotNet.DNN.Modules.MVCTest.Models.Item>)ViewBag.itemsArchive).Count() == 0)
+            {
+                    <ul>
+                        <li>
+                            <div>
+                                <div class="sdnew">
+                                    <a href="@Url.Action("EditItem", "Item", new { ctl = "EditItem", itemId = -1 })" class="dnnPrimaryAction">@Dnn.LocalizeString("AddNewItem")</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                }
+                else
+                {
+                    <ul>
+                        @foreach (var item in (IEnumerable<NLDotNet.DNN.Modules.MVCTest.Models.Item>)ViewBag.itemsArchive)
+                        {
+                            <li>
+                                <div class="sdfilinfoitem">
+                                    <div class="sdfilinfotitre">
+                                        <h2>@item.ItemName</h2>
+                                    </div>
+                                    <div class="sdfilinfodesc">
+                                        <p>@item.ItemDescription</p>
+                                    </div>
+                                    <div class="sdfilinfopub">
+                                        <fieldset>
+                                            <legend>Publication :</legend>
+                                            <ul class="sdfilinfodatetime">
+                                                <li>
+                                                    @(item.ItemPubDateStart.HasValue ? new HtmlString("<span>du " + String.Format(CultureInfo.CurrentCulture, "{ 0:dddd d MMMM yyyy à HH:mm}", Convert.ToDateTime(item.ItemPubDateStart.ToString())) + "</span>") : new HtmlString("<span>du <i>indéterminé</i></span>"))
+                                                </li>
+                                                <li>
+                                                    @(item.ItemPubDateEnd.HasValue ? new HtmlString("<span>du " + String.Format(CultureInfo.CurrentCulture, "{ 0:dddd d MMMM yyyy à HH:mm}", Convert.ToDateTime(item.ItemPubDateEnd.ToString())) + "</span>") : new HtmlString("<span>du <i>indéterminé</i></span>"))
+                                                </li>
+                                            </ul>
+                                        </fieldset>
+                                    </div>
+                                    <div class="sdfilinfobtn">
+                                        <ul class="sdfilinfoaction">
+                                            <li>
+                                                <a href="@Url.Action("DeleteItem", "Item", new {ctl = "Edit", itemId = item.ItemId })" class="dnnSecondaryAction red">@Dnn.LocalizeString("DeleteItem.Text")</a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("EditItem", "Item", new { ctl = "EditItem", itemId = item.ItemId })" class="dnnSecondaryAction">@Dnn.LocalizeString("EditItem")</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+
+                        <li>
+                            <div class="sdfilinfoitem">
+                                <div class="sdnew">
+                                    <asp:HyperLink ID="btnAddNewItem" runat="server" CssClass="dnnPrimaryAction"
+                                                   resourcekey="btnAddNewItem"></asp:HyperLink>
+                                    <a href="@Url.Action("EditItem", "Item", new { ctl = "EditItem", itemId = -1 })" class="dnnPrimaryAction">@Dnn.LocalizeString("AddNewItem")</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                }
+            </div>
+
+
+            @*@Html.HiddenFor(m => m.ModuleId)*@
+        </fieldset>
+
 
 </div>
     <button type="submit" class="dnnPrimaryAction">@Dnn.LocalizeString("Submit")</button>

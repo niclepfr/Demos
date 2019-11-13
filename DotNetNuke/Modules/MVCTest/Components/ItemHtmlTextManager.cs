@@ -16,7 +16,8 @@ namespace NLDotNet.DNN.Modules.MVCTest.Components
     {
         void CreateItemHTMLText(ItemHTMLText t, int iMaxHistorique);
         void DeleteItemHTMLText(ItemHTMLText t);
-        void DeleteItemHTMLText(int iHtmlTextID, int itemId);
+        void DeleteItemHTMLText(int itemId);
+        void DeleteItemHTMLText(int itemId, int iHtmlTextID);        
         ItemHTMLText GetItemHTMLText(int itemId, int iHtmlTextID = -1);
         IEnumerable<ItemHTMLText> GetItemsHTMLText(int itemId);
         IEnumerable<ItemHTMLText> GetItemsHTMLText(string sqlRequest, params object[] sqlParams);
@@ -76,6 +77,36 @@ namespace NLDotNet.DNN.Modules.MVCTest.Components
         /// </summary>
         /// <remarks>
         /// </remarks>
+        /// <param name = "itemId">la scope value</param>
+        /// <history>
+        /// </history>
+        /// -----------------------------------------------------------------------------
+        public void DeleteItemHTMLText(int itemId)
+        {
+            IEnumerable<ItemHTMLText> ts;
+            try
+            {
+                if (itemId > 0)
+                {
+                    ts = GetItemsHTMLText(itemId);
+                    if ((ts != null) && (ts.Count() > 0))
+                    {
+                        foreach (var t in ts)
+                        {
+                            DeleteItemHTMLText(t);
+                        }
+                    }
+                }
+            }
+            catch { }                
+        }
+
+        /// -----------------------------------------------------------------------------
+        /// <summary>
+        ///   DeleteItemHTMLText supprime une ligne à la table MVCTest_Items_HTMLText
+        /// </summary>
+        /// <remarks>
+        /// </remarks>
         /// <param name = "t">la ligne à supprimer</param>
         /// <history>
         /// </history>
@@ -100,7 +131,7 @@ namespace NLDotNet.DNN.Modules.MVCTest.Components
         /// <history>
         /// </history>
         /// -----------------------------------------------------------------------------
-        public void DeleteItemHTMLText(int iHtmlTextID, int itemId)
+        public void DeleteItemHTMLText(int itemId, int iHtmlTextID)
         {
             ItemHTMLText t;
             using (IDataContext ctx = DataContext.Instance())

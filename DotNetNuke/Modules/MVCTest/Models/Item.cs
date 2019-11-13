@@ -12,6 +12,7 @@
 
 using System;
 using System.Web.Caching;
+using System.ComponentModel.DataAnnotations;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.ComponentModel.DataAnnotations;
 using DotNetNuke.Entities.Content;
@@ -52,12 +53,13 @@ namespace NLDotNet.DNN.Modules.MVCTest.Models
         ///<summary>
         /// A datetetime for the begining item publication
         ///</summary>
-        public DateTime? ItemPubDateStart { get; set; } = Null.NullDate;
+        [DataType(DataType.DateTime)]
+        public DateTime? ItemPubDateStart { get; set; }
 
         ///<summary>
         /// A datetime for the ending item publication 
         ///</summary>
-        public DateTime? ItemPubDateEnd { get; set; } = Null.NullDate;
+        public DateTime? ItemPubDateEnd { get; set; }
 
         /// <summary>
         /// 

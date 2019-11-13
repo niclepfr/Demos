@@ -28,7 +28,22 @@
                 @Html.ValidationMessageFor(m => Model.ItemName, Dnn.LocalizeString("EditItemName.ErrorMessage"), new { @class = "dnnFormMessage dnnFormError" })
                 <input type="hidden" class="ValidationMessageFor" value="@Dnn.LocalizeString("EditItemName.ErrorMessage")"/>
             </div>
-            <span>@Model.ItemId.ToString()</span>
+            <div class="dnnFormItem">
+                @Html.DnnLabelFor(m => Model.ItemDescription, Dnn.LocalizeString("EditItemDescription.Text"), Dnn.LocalizeString("EditItemDescription.Help"))
+                @Html.TextBoxFor(m => Model.ItemDescription)
+            </div>
+            <div class="dnnFormItem">
+                @Html.DnnLabelFor(m => Model.ItemPubDateStart, Dnn.LocalizeString("EditItemDescription.Text"), Dnn.LocalizeString("EditItemDescription.Help"))
+                @*@Html.EditorForModel("TextBoxDate","ItemPubDateStart",Model.ItemPubDateStart)*@
+                @*@Html.TextBoxFor(m => Model.ItemPubDateStart
+                , String.Format("{0:D}", Model.ItemPubDateStart.Value.ToString())
+                , new { @class = "textboxdate", type = "datetime" }
+                )*@
+                @Html.EditorFor(m => Model.ItemPubDateStart)
+                <telerik:RadDateTimePicker id="ddpDebPub" runat="server" ViewStateMode="Disabled"></telerik:RadDateTimePicker>                
+            </div>
+
+
             @Html.HiddenFor(m => Model.ItemId)
         </fieldset>
         @*</asp:PlaceHolder>*@
@@ -36,8 +51,14 @@
     </div>
     <button type="submit" class="dnnPrimaryAction">@Dnn.LocalizeString("Submit")</button>
     <a href="@Url.Action("Edit", "Item", new {ctl = "Edit"})" class="dnnSecondaryAction">@Dnn.LocalizeString("Cancel")</a>
-</div>
-
+</div> 
+@*<link href="@Url.Content("~/DesktopModules/MVC/MVCTest/Content/jquery.datetimepicker.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/DesktopModules/MVC/MVCTest/Scripts/jquery.datetimepicker.js")" type="text/javascript"></script>
+<script>
+    $(function () {
+        $('.textboxdate').datetimepicker({timepicker:true});
+    });
+</script>*@
 <script type="text/javascript">
 
     /*globals jQuery, window, Sys */
