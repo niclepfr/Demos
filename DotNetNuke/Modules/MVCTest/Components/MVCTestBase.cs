@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
-
+using System.Data;
+using System.Data.SqlClient;
 
 namespace NLDotNet.DNN.Modules.MVCTest.Components
 {
@@ -76,6 +77,48 @@ namespace NLDotNet.DNN.Modules.MVCTest.Components
             if (_default == null) { _default = DateTime.MinValue; }
 
             return DateTime.TryParse(objValeur, CultureInfo.CurrentCulture, DateTimeStyles.AllowWhiteSpaces | DateTimeStyles.AdjustToUniversal, out dTmp) ? dTmp : _default.Value;
-        }               
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_sqlConnx"></param>
+        /// <param name="_sqlRequest"></param>
+        /// <param name="_sqlChampsIdentity"></param>
+        /// <returns></returns>
+        public static SqlDataAdapter SQLDataAdapter_Initialise(SqlConnection _sqlConnx, string _sqlRequest, string _sqlTableInsert, string _sqlChampsIdentity = "iID")
+        {
+            SqlDataAdapter da = null;
+            SqlCommandBuilder cmdBuilder = null;
+            
+            try
+            {
+                if (_sqlConnx.State != ConnectionState.Open) { _sqlConnx.Open(); }
+                if (_sqlConnx.State != ConnectionState.Open) { return null; }
+
+                if ((!string.IsNullOrEmpty(_sqlRequest)) && (_sqlConnx.State == ConnectionState.Open))
+                {
+                    da = new SqlDataAdapter(_sqlRequest, _sqlConnx);
+                    cmdBuilder = new SqlCommandBuilder(da);
+                    da.InsertCommand = cmdBuilder.GetInsertCommand();
+                    da.UpdateCommand = cmdBuilder.GetUpdateCommand();
+                    da.DeleteCommand = cmdBuilder.GetDeleteCommand();
+                    da.RowUpdating += (xsender, xe) =>
+                    {
+                        if (xe.Status == UpdateStatus.Continue && xe.StatementType == StatementType.Insert)
+                        {
+                            da.InsertCommand.CommandText = String.Concat(da.InsertCommand.CommandText, "; SELECT ", _sqlChampsIdentity, " FROM ", _sqlTableInsert, " WHERE ", _sqlChampsIdentity, "=SCOPE_IDENTITY()");
+                            da.InsertCommand.UpdatedRowSource = UpdateRowSource.FirstReturnedRecord;
+                            SqlParameter identParam = new SqlParameter("@Identity", SqlDbType.BigInt, 0, _sqlChampsIdentity);
+                            identParam.Direction = ParameterDirection.Output;
+                            da.InsertCommand.Parameters.Add(identParam);
+                        }
+                    };
+                }
+            }
+            catch { }
+
+            return da;
+        }
     }
 }
