@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddItem.Text" xml:space="preserve">
-    <value>Add New Item</value>
+    <value>Ajouter un article</value>
   </data>
   <data name="ItemsActive.Text" xml:space="preserve">
     <value>Les actualités actuellement publiées sur le site</value>
@@ -130,10 +130,10 @@
     <value>Tout contracter</value>
   </data>
   <data name="DeleteItem.Text" xml:space="preserve">
-    <value>Delete</value>
+    <value>Supprimer</value>
   </data>
   <data name="EditItem.Text" xml:space="preserve">
-    <value>Edit</value>
+    <value>Modifier</value>
   </data>
   <data name="ExpandAll.Text" xml:space="preserve">
     <value>Développer tout</value>
@@ -148,7 +148,7 @@
     <value>Name</value>
   </data>
   <data name="Submit.Text" xml:space="preserve">
-    <value>Save</value>
+    <value>Sauvegarder</value>
   </data>
   <data name="NoItems.Text" xml:space="preserve">
     <value>No items defined.</value>
@@ -191,5 +191,14 @@
   </data>
   <data name="ItemsToActive.Text" xml:space="preserve">
     <value>Les actualités en attente de publication</value>
+  </data>
+  <data name="ActiveItem.Text" xml:space="preserve">
+    <value>Publier</value>
+  </data>
+  <data name="DesactiveItem.Text" xml:space="preserve">
+    <value>En attente</value>
+  </data>
+  <data name="ItemHTMLTextContent.Text" xml:space="preserve">
+    <value>Rédiger votre actualité</value>
   </data>
 </root>

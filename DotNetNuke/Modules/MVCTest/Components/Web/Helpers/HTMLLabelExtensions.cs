@@ -69,22 +69,21 @@ namespace NLDotNet.DNN.Modules.MVCTest.Components.Web.Helpers
             string htmlFieldName = ExpressionHelper.GetExpressionText(expression);
 
             /* Text du label */
-            //string labelText = metadata.DisplayName ?? metadata.PropertyName ?? htmlFieldName.Split('.').Last();
-            //if (String.IsNullOrEmpty(labelText))
-            //{
-            //    return MvcHtmlString.Empty;
-            //}
             if (string.IsNullOrWhiteSpace(labelText))
             {
                 labelText = metadata.DisplayName ?? metadata.PropertyName ?? htmlFieldName.Split('.').Last();
             }
-
+            if (string.IsNullOrWhiteSpace(labelText))
+            {
+                return MvcHtmlString.Empty;
+            }
             TagBuilder tagDiv = new TagBuilder("div");
             tagDiv.AddCssClass("dnnLabel");
 
             TagBuilder tagLbl = new TagBuilder("label");
             if(htmlAttributes != null)
                 tagLbl.MergeAttributes(htmlAttributes);
+
             //var _for = html.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldId(htmlFieldName);
             //_for = metadata.PropertyName;
             //var _for = htmlFieldName.Split('.').Last();

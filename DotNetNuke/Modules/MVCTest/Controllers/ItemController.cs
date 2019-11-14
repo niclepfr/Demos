@@ -143,20 +143,20 @@ namespace NLDotNet.DNN.Modules.MVCTest.Controllers
                     item.ItemCreaUserID = User.UserID;
                     item.ItemCreaDate = DateTime.UtcNow.ToLocalTime();
                     item.ItemModifUserID = User.UserID;
-                    item.ItemModifDate = DateTime.UtcNow.ToLocalTime();
-                    
+                    item.ItemModifDate = DateTime.UtcNow.ToLocalTime();                    
                     ItemManager.Instance.CreateItem(item);
                 }
                 else
                 {
-                    var existingItem = ItemManager.Instance.GetItem(item.ItemId, item.ModuleId);
+                    var existingItem = ItemManager.Instance.GetItem(item.ItemId, ModuleContext.ModuleId);
                     existingItem.ItemModifUserID = User.UserID;
                     existingItem.ItemModifDate = DateTime.UtcNow.ToLocalTime();
                     existingItem.ItemName = item.ItemName;
                     existingItem.ItemDescription = item.ItemDescription;
-
-
+                    existingItem.ItemPubDateStart = item.ItemPubDateStart;
+                    existingItem.ItemPubDateEnd = item.ItemPubDateEnd;
                     ItemManager.Instance.UpdateItem(existingItem);
+                    item = existingItem;
                 }                                
             }
             ModelState.Clear();

@@ -33,8 +33,7 @@
                 @Html.TextBoxFor(m => Model.ItemDescription)
             </div>
             <div class="dnnFormItem">
-                @Html.DnnLabelFor(m => Model.ItemPubDateStart, Dnn.LocalizeString("EditItemDescription.Text"), Dnn.LocalizeString("EditItemDescription.Help"))
-                @*@Html.EditorForModel("TextBoxDate","ItemPubDateStart",Model.ItemPubDateStart)*@
+                @Html.DnnLabelFor(m => Model.ItemPubDateStart, Dnn.LocalizeString("EditItemPubDateStart.Text"), Dnn.LocalizeString("EditItemPubDateStart.Help"))
                 @*@Html.TextBoxFor(m => Model.ItemPubDateStart
                 , String.Format("{0:D}", Model.ItemPubDateStart.Value.ToString())
                 , new { @class = "textboxdate", type = "datetime" }
@@ -42,23 +41,35 @@
                 @Html.EditorFor(m => Model.ItemPubDateStart)
                 <telerik:RadDateTimePicker id="ddpDebPub" runat="server" ViewStateMode="Disabled"></telerik:RadDateTimePicker>                
             </div>
-
+            <div class="dnnFormItem">
+                @Html.DnnLabelFor(m => Model.ItemPubDateEnd, Dnn.LocalizeString("EditItemPubDateEnd.Text"), Dnn.LocalizeString("EditItemPubDateEnd.Help"))
+                @Html.EditorFor(m => Model.ItemPubDateEnd)                
+            </div>
 
             @Html.HiddenFor(m => Model.ItemId)
         </fieldset>
-        @*</asp:PlaceHolder>*@
 
-    </div>
+        <h2 id="dnnSitePanel-ItemHTMLTextContent" class="dnnFormSectionHead dnnClear">
+            <a href="" class="dnnSectionExpanded">
+                @Dnn.LocalizeString("ItemHTMLTextContent")
+            </a>
+        </h2>
+        <fieldset>
+            <div class="dnnFormItem">
+                <dnn:texteditor id="txtContent" runat="server" height="400" width="100%" ChooseMode="false"></dnn:texteditor>
+            </div>
+        </fieldset>
+
+
+@*</asp:PlaceHolder>*@
+
+</div>
     <button type="submit" class="dnnPrimaryAction">@Dnn.LocalizeString("Submit")</button>
     <a href="@Url.Action("Edit", "Item", new {ctl = "Edit"})" class="dnnSecondaryAction">@Dnn.LocalizeString("Cancel")</a>
-</div> 
-@*<link href="@Url.Content("~/DesktopModules/MVC/MVCTest/Content/jquery.datetimepicker.css")" rel="stylesheet" type="text/css" />
+</div>
+ 
+<link href="@Url.Content("~/DesktopModules/MVC/MVCTest/Content/jquery.datetimepicker.css")" rel="stylesheet" type="text/css" />
 <script src="@Url.Content("~/DesktopModules/MVC/MVCTest/Scripts/jquery.datetimepicker.js")" type="text/javascript"></script>
-<script>
-    $(function () {
-        $('.textboxdate').datetimepicker({timepicker:true});
-    });
-</script>*@
 <script type="text/javascript">
 
     /*globals jQuery, window, Sys */
@@ -67,13 +78,11 @@
             $('#dnnEditBasicSettings').dnnPanels();
             $('#dnnEditBasicSettings .dnnFormExpandContent a').dnnExpandAll({ expandText: '@Dnn.LocalizeString("ExpandAll")', collapseText: '@Dnn.LocalizeString("CollapseAll")', targetArea: '#dnnEditBasicSettings' });
         }
-
         function RequiredFieldValidator(source) {
             if ($(source).length == 0) { return true; }
             if (/^\s*$/.test($(source).val())) { return false; }
             return true;
         }
-
         $(function() {
             $('#cancelEdit').click(function() { dnnModal.closePopUp(false); });
             dnnEditBasicSettings();
@@ -81,7 +90,6 @@
                 dnnEditBasicSettings();
             });
         });
-
         $(function() {
             $('form').on('submit', function (e) {
                 e.preventDefault();
@@ -100,7 +108,11 @@
                     $(this).unbind('submit').submit();
             });
         });
-
+        $(function () {
+            $('.textboxdatetime').each(function (_index, _obj) {
+                $(_obj).datetimepicker({ timepicker: true, format: 'd/m/Y H:i', lang: 'fr' });
+            });
+        });
     }(jQuery, window.Sys));        
 
 </script>
