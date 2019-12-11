@@ -90,6 +90,7 @@ namespace NLDotNet.DNN.Modules.MVCTest.Components.Web.Helpers
             tagLbl.Attributes.Add("for", htmlFieldName);
 
             TagBuilder tagSpan = new TagBuilder("span");
+            tagSpan.Attributes.Add("title", labelText);
             tagSpan.SetInnerText(labelText);
             
             // assign <span> to <label> inner html

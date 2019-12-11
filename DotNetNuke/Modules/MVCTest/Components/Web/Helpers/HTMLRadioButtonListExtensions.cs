@@ -12,6 +12,93 @@ namespace NLDotNet.DNN.Modules.MVCTest.Components.Web.Helpers
     public static class HTMLRadioButtonListExtensions
     {
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="html"></param>
+        /// <param name="name"></param>
+        /// <param name="listItems"></param>
+        /// <param name="selectedValue"></param>
+        /// <param name="htmlAttributes"></param>
+        /// <param name="helpText"></param>
+        /// <returns></returns>
+        public static MvcHtmlString RadioButtonList(this DnnHtmlHelper html, string name, Dictionary<string, string> listItems, string selectedValue, IDictionary<string, object> htmlAttributes = null, string helpText = "")
+        {
+            if (listItems == null)
+                return MvcHtmlString.Empty;
+
+            if (listItems.Count == 0)
+                return MvcHtmlString.Empty;
+
+            var sbHtml = new StringBuilder();
+
+            try
+            {
+                var htmlCtrlName = name;
+                var cssClass = (htmlAttributes == null) ? "" : ((htmlAttributes.Count == 0) ? "" : " " + String.Join(@" ", htmlAttributes));
+                sbHtml.Append(@"<table>").AppendLine()
+                    .Append(@"<tbody>").AppendLine()
+                    .Append("<tr>").AppendLine();
+                for (var i = 0; i < listItems.Count; i++)
+                {
+                    var _value = listItems.Keys.ElementAt(i);
+                    var _text = listItems.Values.ElementAt(i);
+                    sbHtml.Append("<td>")
+                        .Append(html.RadioButton(htmlCtrlName, _value, selectedValue.Equals(_value, StringComparison.InvariantCultureIgnoreCase)).ToString()).AppendLine()
+                        .Append(@"<label for=""").Append(htmlCtrlName + i).Append(@""" class=""dnnBoxLabel"">").Append(@"" + _text).Append(@"</label>").AppendLine()
+                        .Append(@"</td>").AppendLine();
+
+                }
+                sbHtml.Append("</tr>").AppendLine()
+                    .Append("</tbody>").AppendLine()
+                    .Append("</table>").AppendLine();
+            }
+            catch { }
+
+            return MvcHtmlString.Create(@"" + sbHtml.ToString());
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="html"></param>
+        /// <param name="name"></param>
+        /// <param name="listItems"></param>
+        /// <param name="selectedValue"></param>
+        /// <param name="htmlAttributes"></param>
+        /// <param name="helpText"></param>
+        /// <returns></returns>
+        public static MvcHtmlString DnnRadioButtonList(this DnnHtmlHelper html, string name, Dictionary<string, string> listItems, string selectedValue, IDictionary<string, object> htmlAttributes = null, string helpText = "")
+        {
+            if (listItems == null)
+                return MvcHtmlString.Empty;
+
+            if (listItems.Count == 0)
+                return MvcHtmlString.Empty;
+
+            var sbHtml = new StringBuilder();
+
+            try
+            {
+                var htmlCtrlName = name;
+                var cssClass = (htmlAttributes == null) ? "" : ((htmlAttributes.Count == 0) ? "" : " " + String.Join(@" ", htmlAttributes));
+                sbHtml.Append(@"<span class=""dnnFormRadioButtons display-table"">").AppendLine();
+                for (var i = 0; i < listItems.Count; i++)
+                {
+                    var _value = listItems.Keys.ElementAt(i);
+                    var _text = listItems.Values.ElementAt(i);
+                    sbHtml.Append(html.RadioButton(htmlCtrlName, _value, selectedValue.Equals(_value, StringComparison.InvariantCultureIgnoreCase)).ToString()).AppendLine()
+                        .Append(@"<label for=""").Append(htmlCtrlName + i).Append(@""" class=""dnnBoxLabel"">").Append(@"" + _text).Append(@"</label>").AppendLine()
+                        .Append(@"<br>").AppendLine();
+
+                }
+                sbHtml.Append(@"</span>").AppendLine();
+            }
+            catch { }
+
+            return MvcHtmlString.Create(@"" + sbHtml.ToString());
+        }
+        
+        /// <summary>
         /// Template Label pour les views Edit/Settings
         /// </summary>
         /// <typeparam name="TModel"></typeparam>
