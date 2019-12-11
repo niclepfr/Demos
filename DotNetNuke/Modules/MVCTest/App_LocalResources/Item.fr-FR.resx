@@ -201,4 +201,40 @@
   <data name="ItemHTMLTextContent.Text" xml:space="preserve">
     <value>Rédiger votre actualité</value>
   </data>
+  <data name="AddContent.Text" xml:space="preserve">
+    <value>&lt;p&gt;Ajoutez un contenu...&lt;/p&gt;</value>
+  </data>
+  <data name="LabelCurrentVersion.Help" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="LabelCurrentVersion.Text" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="Preview.Text" xml:space="preserve">
+    <value>Aperçu</value>
+  </data>
+  <data name="Version.Text" xml:space="preserve">
+    <value>Historique de version</value>
+  </data>
+  <data name="BASIC.Text" xml:space="preserve">
+    <value>Texte simple</value>
+  </data>
+  <data name="RICH.Text" xml:space="preserve">
+    <value>Texte enrichi</value>
+  </data>
+  <data name="TextRenderModeLabel.Help" xml:space="preserve">
+    <value>Sélectionner le mode utilisé pour l'affichage de l'HTML</value>
+  </data>
+  <data name="TextRenderModeLabel.Text" xml:space="preserve">
+    <value>Mode d'affichage :</value>
+  </data>
+  <data name="H.Text" xml:space="preserve">
+    <value>HTML</value>
+  </data>
+  <data name="R.Text" xml:space="preserve">
+    <value>Brut</value>
+  </data>
+  <data name="T.Text" xml:space="preserve">
+    <value>Texte</value>
+  </data>
 </root>
