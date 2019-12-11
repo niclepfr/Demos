@@ -76,7 +76,7 @@ namespace NLDotNet.DNN.Modules.MVCTest.Components
         {
             if((t != null) && (t.ItemId>0))
             {
-                ItemHtmlTextManager.Instance.DeleteItemHTMLText(t.ItemId);
+                ItemContentManager.Instance.DeleteItemContent(t.ItemId);
                 using (IDataContext ctx = DataContext.Instance())
                 {
                     var rep = ctx.GetRepository<Item>();

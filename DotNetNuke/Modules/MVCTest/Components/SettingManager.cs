@@ -81,12 +81,23 @@ namespace NLDotNet.DNN.Modules.MVCTest.Components
             return ts;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="moduleId"></param>
+        /// <returns></returns>
         public Hashtable GetSettingsCollection(int moduleId)
         {
             var ts = GetSettings(moduleId);
             return new Hashtable((from t in ts select new { SettingName = t.SettingName, SettingValue = t.SettingValue }).ToDictionary(s => s.SettingName));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="settingId"></param>
+        /// <param name="moduleId"></param>
+        /// <returns></returns>
         public Settings GetSetting(int settingId, int moduleId)
         {
             Settings t;
@@ -131,6 +142,10 @@ namespace NLDotNet.DNN.Modules.MVCTest.Components
             return (t != null) ? t.SettingValue : "";
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="t"></param>
         public void UpdateSetting(Settings t)
         {
             using (IDataContext ctx = DataContext.Instance())
@@ -140,6 +155,10 @@ namespace NLDotNet.DNN.Modules.MVCTest.Components
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         protected override System.Func<ISettingsManager> GetFactory()
         {
             return () => new SettingManager();
