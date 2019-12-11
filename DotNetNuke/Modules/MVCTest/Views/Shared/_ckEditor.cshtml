@@ -1,0 +1,30 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<NLDotNet.DNN.Modules.MVCTest.Models.ViewModelEditItem>
+
+<div class="dnnFormItem">
+    <div class="dnnForm dnnTextEditor dnnClear">
+        <div class="dnnTextPanel" style="width:100%;">
+            <div class="dnnFormItem">
+                <div style="width:99%;">
+                    @*<dnn:texteditor id="txtContent" runat="server" height="400" width="100%" ChooseMode="false"></dnn:texteditor>*@
+                    <textarea name="@ViewBag.CKEditorControlName" id="@ViewBag.CKEditorControlName" rows="10" cols="80">
+                        @Model.ItemContentModel.nText
+                    </textarea>
+                </div>
+            </div>
+        </div>
+        @Html.HiddenFor(m => Model.ItemContentModel.nText)
+    </div>
+</div>
+<div class="dnnFormItem">
+    <div id="Div3" class="html_preview"></div>
+</div>
+
+<link href="@Url.Content(ViewBag.CKEditorToolBarsCSSFile)" type="text/css" rel="stylesheet">
+<link href="@Url.Content(ViewBag.CKEditorCSSFile)" type="text/css" rel="stylesheet">
+<script src="@Url.Content(ViewBag.CKEditorJSFile)" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+    @Html.Raw(ViewBag.CKEditorJSScript)
+
+</script>

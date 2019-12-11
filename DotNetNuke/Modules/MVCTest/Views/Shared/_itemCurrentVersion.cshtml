@@ -1,0 +1,11 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<NLDotNet.DNN.Modules.MVCTest.Models.ViewModelEditItem>
+
+@using DotNetNuke.Web.Mvc.Helpers
+
+<div class="dnnFormItem">
+    @Dnn.LabelFor(m => Model.ItemContentModel.VersionNumber, Dnn.LocalizeString("LabelCurrentVersion.Text"), Dnn.LocalizeString("LabelCurrentVersion.Help"))
+        
+    <span>@Model.ItemContentModel.VersionNumber</span>
+    @Html.HiddenFor(m => Model.ItemContentModel.VersionNumber)
+</div>
+

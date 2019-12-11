@@ -1,0 +1,23 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<NLDotNet.DNN.Modules.MVCTest.Models.ViewModelEditItem>
+
+@using DotNetNuke.Web.Mvc.Helpers
+@using NLDotNet.DNN.Modules.MVCTest.Components.Web.Helpers
+
+<div class="dnnFormItem">
+    <div class="dnnForm dnnTextEditor dnnClear">
+        <div class="dnnTextPanel" style="width:100%;">
+            <div class="dnnFormItem">
+                @*<dnn:texteditor id="txtContent" runat="server" height="400" width="100%" ChooseMode="false"></dnn:texteditor>*@
+                <textarea name="txtContentEditor" id="txtContentEditor" rows="12" cols="80" style="height:400px;width:100%;max-width:98%;">
+                    @Html.Raw(Model.TextContentToDisplay)
+                </textarea>
+            </div>
+        </div>
+        @Html.HiddenFor(m => Model.ItemContentModel.nText)
+    </div>
+</div>
+<div class="dnnFormItem">
+    @Dnn.Label("TextRenderModeLabel", @Dnn.LocalizeString("TextRenderModeLabel.Text"), @Dnn.LocalizeString("TextRenderModeLabel.Help"))
+    @*@Html.RadioButtonList("TextRenderModeRBList", (Dictionary<string, string>)ViewBag.TextRenderModeRBList, "")*@    
+    @Html.RadioButtonList("TextRenderModeRBList", Model.GetTextRenderModeRBList(), Model.TextRenderModeCheckedValue,new Dictionary<string,object>(){ { "postaction", @Html.Raw(@Url.ModuleContext.NavigateUrl(Url.ModuleContext.TabId, "EditItem", true, "mid", Url.ModuleContext.ModuleId.ToString(), "action", "TextRenderModeRBListCheckedIndexChanged")).ToString().Remove(0, (string.Format("{0}://{1}", Request.Url.Scheme, Request.Url.Authority)).Length)}, { "jqueryaction", "click" } })
+</div>

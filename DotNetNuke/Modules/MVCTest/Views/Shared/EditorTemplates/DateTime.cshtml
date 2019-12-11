@@ -4,5 +4,5 @@
 
 @Html.TextBox(""
     , Model.HasValue ? String.Format("{0}", Model.Value.ToString("dd/MM/yyyy HH:mm")) : string.Empty     
-    , new { @class = "textboxdatetime", type = "datetime" }
+    , new { @class = "textboxdatetime", type = "datetime", autocomplete = "off" }
     )

@@ -22,7 +22,7 @@
                 <div class="dnnFormItem">
                     @Html.DnnLabelFor(m => Model[i].SettingValue, @Dnn.LocalizeString("lblSetting" + Convert.ToString(i + 1) + ".Text"), @Dnn.LocalizeString("lblSetting" + Convert.ToString(i + 1) + ".Help"))
                     @Html.DnnRadioButtonListFor(m => Model[i].SettingValue, (Dictionary<string, string>)ViewBag.rblItemAnimation, Model[i].SettingValue)
-                    @Html.HiddenFor(m => Model[i].SettingName)
+                    @Html.HiddenFor(m => Model[i].SettingName)                    
                 </div>
                 break;
             default:

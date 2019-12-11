@@ -1,0 +1,26 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<NLDotNet.DNN.Modules.MVCTest.Models.ViewModelEditItem>
+
+@using DotNetNuke.Web.Mvc.Helpers
+@using System.Web.Mvc
+@using NLDotNet.DNN.Modules.MVCTest.Components.Web.Helpers
+
+<div id="EditItemVersion-@Dnn.ModuleContext.ModuleId">
+
+
+    <div class="ehActions">
+        <ul class="dnnActions dnnClear">
+            <li>
+                <a href="@Url.Action("Edit", "Item", new {ctl = "Edit"})" class="dnnSecondaryAction">@Dnn.LocalizeString("Cancel"S)</a>
+            </li>
+            <li>
+                <asp:LinkButton ID="cmdPreview" runat="server" class="dnnSecondaryAction" resourcekey="cmdPreview" />
+                <a href="@Url.Action("EditItemPreview", "Item", new {ctl = "EditItemPreview", itemId = Model.ItemModel.ItemId})" class="dnnSecondaryAction">@Dnn.LocalizeString("Preview")</a>
+            </li>
+            <li>
+                <asp:LinkButton ID="cmdPreview" runat="server" class="dnnSecondaryAction" resourcekey="cmdPreview" />
+                <a href="@Url.Action("EditItem", "Item", new {ctl = "EditItem", itemId = Model.ItemModel.ItemId})" class="dnnSecondaryAction">@Dnn.LocalizeString("Preview")</a>
+            </li>            
+        </ul>
+    </div>
+
+</div>

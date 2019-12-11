@@ -4,6 +4,7 @@
 @using System.Collections.Generic
 @using DotNetNuke.Web.Mvc.Helpers
 
+@{var itemIndice = 0; }
 <div id="Item-@Dnn.ModuleContext.ModuleId">
     <div class="dnnForm dnnEditBasicSettings sdfilinfo grey" id="dnnEditBasicSettings">
         <div class="dnnFormExpandContent dnnRight "><a href="#">@Dnn.LocalizeString("ExpandAll")</a></div>
@@ -12,7 +13,7 @@
             <a href="#" class="dnnSectionExpanded">@Dnn.LocalizeString("ItemsActive")</a>
         </h2>
         <fieldset>
-            <div class="dnnFormItem sdfilinfoitems">
+            <div class="dnnFormItem sdfilinfoitems items-to-active">
 
                 @if (Model.Count() == 0)
                 {
@@ -34,7 +35,7 @@
                     <li>
                         <div class="sdfilinfoitem">
                             <div class="sdfilinfotitre">
-                                <h2>@item.ItemName</h2>
+                                <h2 title="@item.ItemName">@item.ItemName</h2>
                             </div>
                             <div class="sdfilinfodesc">
                                 <p>@item.ItemDescription</p>
@@ -55,15 +56,17 @@
                             <div class="sdfilinfobtn">
                                 <ul class="sdfilinfoaction">
                                     <li>
-                                        <a href="@Url.Action("ActiveItem", "Item", new { itemId = item.ItemId })" class="dnnSecondaryAction red">@Dnn.LocalizeString("DesactiveItem")</a>
+                                        <button type="submit" class="dnnSecondaryAction red" name="submitItem_@itemIndice" id="submitItem_@itemIndice" value="ActiveItem" postaction="@Html.Raw(@Url.ModuleContext.NavigateUrl(Url.ModuleContext.TabId, "Edit", true, "mid", Url.ModuleContext.ModuleId.ToString(), "action", "ActivItem", "itemid",item.ItemId.ToString()))" jqueryaction="click">@Dnn.LocalizeString("DesactiveItem.Text")</button>
                                     </li>
                                     <li>                                        
-                                        <a href="@Url.Action("EditItem", "Item", new { ctl = "EditItem", itemId = item.ItemId })">@Dnn.LocalizeString("EditItem")</a>
+                                        <a href="@Url.Action("EditItem", "Item", new { ctl = "EditItem", itemId = item.ItemId })" class="dnnSecondaryAction">@Dnn.LocalizeString("EditItem")</a>
                                     </li>
                                 </ul>
+                                <input type="hidden" name="ItemId_@itemIndice" id="ItemId_@itemIndice" value="@item.ItemId" />
                             </div>
                         </div>
                     </li>
+                        itemIndice++;
                     }
 
                     <li>
@@ -76,16 +79,13 @@
                 </ul>
                 }
             </div>
-
-
-            @*@Html.HiddenFor(m => m.ModuleId)*@
         </fieldset>
 
         <h2 id="dnnSitePanel-FilInfoAPublier" class="dnnFormSectionHead dnnClear">
             <a href="#" class="dnnSectionExpanded">@Dnn.LocalizeString("ItemsToActive")</a>
         </h2>
         <fieldset>
-            <div class="dnnFormItem sdfilinfoitems">
+            <div class="dnnFormItem sdfilinfoitems items-to-actives">
             @if (((IEnumerable<NLDotNet.DNN.Modules.MVCTest.Models.Item>)ViewBag.itemsToActive).Count() == 0)
             {
                 <ul>
@@ -106,7 +106,7 @@
                         <li>
                             <div class="sdfilinfoitem">
                                 <div class="sdfilinfotitre">
-                                    <h2>@item.ItemName</h2>
+                                    <h2 title="@item.ItemName">@item.ItemName</h2>
                                 </div>
                                 <div class="sdfilinfodesc">
                                     <p>@item.ItemDescription</p>
@@ -127,15 +127,19 @@
                                 <div class="sdfilinfobtn">
                                     <ul class="sdfilinfoaction">
                                         <li>
-                                            <a href="@Url.Action("ActiveItem", "Item", new { ctl = "EditItem", itemId = item.ItemId })" class="dnnSecondaryAction green">@Dnn.LocalizeString("ActiveItem.Text")</a>
+                                            @*<a href="@Url.Action("ActiveItem", "Item", new { ctl = "EditItem", itemId = item.ItemId })" class="dnnSecondaryAction green">@Dnn.LocalizeString("ActiveItem.Text")</a>*@
+                                            <button type="submit" class="dnnSecondaryAction green" name="submitItem_@itemIndice" id="submitItem_@itemIndice" value="ActiveItem" postaction="@Html.Raw(@Url.ModuleContext.NavigateUrl(Url.ModuleContext.TabId, "Edit", true, "mid", Url.ModuleContext.ModuleId.ToString(), "action", "ActivItem", "itemid",item.ItemId.ToString()))" jqueryaction="click">@Dnn.LocalizeString("ActiveItem.Text")</button>
                                         </li>
                                         <li>
                                             <a href="@Url.Action("EditItem", "Item", new { ctl = "EditItem", itemId = item.ItemId })" class="dnnSecondaryAction">@Dnn.LocalizeString("EditItem")</a>
                                         </li>
                                     </ul>
                                 </div>
+                                @*@Html.HiddenFor(m => item.ItemId)*@
+                                <input type="hidden" name="ItemId_@itemIndice" id="ItemId_@itemIndice" value="@item.ItemId" />
                             </div>
                         </li>
+                        itemIndice++;
                     }
 
                     <li>
@@ -156,7 +160,7 @@
             <a href="#" class="dnnSectionExpanded">@Dnn.LocalizeString("ItemsArchive")</a>
         </h2>
         <fieldset>
-            <div class="dnnFormItem sdfilinfoitems">
+            <div class="dnnFormItem sdfilinfoitems items-archives">
                 @if (((IEnumerable<NLDotNet.DNN.Modules.MVCTest.Models.Item>)ViewBag.itemsArchive).Count() == 0)
             {
                     <ul>
@@ -172,12 +176,14 @@
                 else
                 {
                     <ul>
-                        @foreach (var item in (IEnumerable<NLDotNet.DNN.Modules.MVCTest.Models.Item>)ViewBag.itemsArchive)
+                        @*@foreach (var item in (IEnumerable<NLDotNet.DNN.Modules.MVCTest.Models.Item>)ViewBag.itemsArchive)*@                        
+                        @for (var i = 0; i < ViewBag.itemsArchive.Length; i++)
                         {
+                            var item = (NLDotNet.DNN.Modules.MVCTest.Models.Item)ViewBag.itemsArchive[i];
                             <li>
                                 <div class="sdfilinfoitem">
                                     <div class="sdfilinfotitre">
-                                        <h2>@item.ItemName</h2>
+                                        <h2 title="@item.ItemName">@item.ItemName</h2>
                                     </div>
                                     <div class="sdfilinfodesc">
                                         <p>@item.ItemDescription</p>
@@ -198,15 +204,19 @@
                                     <div class="sdfilinfobtn">
                                         <ul class="sdfilinfoaction">
                                             <li>
-                                                <a href="@Url.Action("DeleteItem", "Item", new {ctl = "Edit", itemId = item.ItemId })" class="dnnSecondaryAction red">@Dnn.LocalizeString("DeleteItem.Text")</a>
+                                                @*<a href="@Url.Action("DeleteItem", "Item", new {ctl = "Edit", itemId = item.ItemId })" class="dnnSecondaryAction red deleteitem">@Dnn.LocalizeString("DeleteItem.Text")</a>*@
+                                                <button type="submit" class="dnnSecondaryAction red" name="submitItem_@itemIndice" id="submitItem_@itemIndice" value="DeleteItem" postaction="@Html.Raw(@Url.ModuleContext.NavigateUrl(Url.ModuleContext.TabId, "Edit", true, "mid", Url.ModuleContext.ModuleId.ToString(), "action", "DeleItem", "itemid",item.ItemId.ToString()))" jqueryaction="click">@Dnn.LocalizeString("DeleteItem.Text")</button>                                                
                                             </li>
                                             <li>
                                                 <a href="@Url.Action("EditItem", "Item", new { ctl = "EditItem", itemId = item.ItemId })" class="dnnSecondaryAction">@Dnn.LocalizeString("EditItem")</a>
                                             </li>
                                         </ul>
                                     </div>
+                                    @*@Html.HiddenFor(m => item.ItemId)*@
+                                    <input type="hidden" name="ItemId_@itemIndice" id="ItemId_@itemIndice" value="@item.ItemId" />
                                 </div>
                             </li>
+                            itemIndice++;                            
                         }
 
                         <li>
@@ -219,14 +229,10 @@
                     </ul>
                 }
             </div>
-
-
-            @*@Html.HiddenFor(m => m.ModuleId)*@
         </fieldset>
 
-
-</div>
-    <button type="submit" class="dnnPrimaryAction">@Dnn.LocalizeString("Submit")</button>
+    </div>
+    @*<button type="submit" class="dnnPrimaryAction">@Dnn.LocalizeString("Submit")</button>*@
     <a id="cancelEdit" href="#" class="dnnSecondaryAction">@Dnn.LocalizeString("Cancel")</a>
 </div>
 
@@ -237,7 +243,6 @@
             $('#dnnEditBasicSettings').dnnPanels();
             $('#dnnEditBasicSettings .dnnFormExpandContent a').dnnExpandAll({ expandText: '@Dnn.LocalizeString("ExpandAll")', collapseText: '@Dnn.LocalizeString("CollapseAll")', targetArea: '#dnnEditBasicSettings' });
         }
-
         $(function() {
             $('#cancelEdit').click(function() { dnnModal.closePopUp(false); });
             dnnEditBasicSettings();
@@ -245,6 +250,26 @@
                 dnnEditBasicSettings();
             });
         });
-
-    }(jQuery, window.Sys));
+        //$('.items-actives button[type="submit"]').each(function (_index, _obj) {
+        //    $(_obj).on('click', function (e) { $(_obj).val("ActiveItem"); });
+        //});
+        //$('.items-to-actives button[type="submit"]').each(function (_index, _obj) {
+        //    $(_obj).on('click', function (e) { $(_obj).val("ActiveItem"); });
+        //});
+        //$('.items-archives button[type="submit"]').each(function (_index, _obj) {
+        //    $(_obj).on('click', function (e) { $(_obj).val("DeleteItem"); });
+        //});
+        $(function () {
+            $('form').find('[postaction]').each(function (_index,_obj) {
+                var postaction = $(_obj).attr('postaction');
+                var evt = $(_obj).attr('jqueryaction');
+                $(_obj).on(evt, function (e) {
+                    e.PreventDefault;
+                    $('form').attr('action', postaction);
+                    $('form').submit();                    
+                });
+                $(_obj).removeAttr('postaction').removeAttr('jqueryaction');
+            });
+        });
+    }(jQuery, window.Sys));        
 </script>

@@ -1,0 +1,53 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<NLDotNet.DNN.Modules.MVCTest.Models.ViewModelEditItem>
+
+@using DotNetNuke.Web.Mvc.Helpers
+@using System.Web.Mvc
+@using NLDotNet.DNN.Modules.MVCTest.Components.Web.Helpers
+
+<div id="EditItemPreview-@Dnn.ModuleContext.ModuleId">
+
+    <div class="dnnForm dnnEditBasicSettings" id="dnnEditItemPreview">
+        
+        <div class="dnnFormExpandContent dnnRight">
+            <a href="">@Dnn.LocalizeString("ExpandAll")</a>
+        </div>
+        
+        <h2 id="dnnSitePanel-ItemBasicSettings" class="dnnFormSectionHead dnnClear">
+            <a href="" class="dnnSectionExpanded">
+                @Dnn.LocalizeString("EditItemBasicSettings")
+            </a>
+        </h2>
+
+        <fieldset>
+            
+            <div class="html_preview">
+                @Model.ItemContentModel.nText
+            </div>
+
+            <div id="divCurrentVersion">
+                @Html.Partial("_itemCurrentVersion")
+            </div>
+
+        </fieldset>
+
+    </div>
+
+
+
+    <div class="ehActions">
+        <ul class="dnnActions dnnClear">
+            <li>
+                <a href="@Url.Action("Edit", "Item", new {ctl = "Edit"})" class="dnnSecondaryAction">@Dnn.LocalizeString("Cancel")</a>
+            </li>
+            <li>
+                <asp:LinkButton ID="cmdPreview" runat="server" class="dnnSecondaryAction" resourcekey="cmdPreview" />
+                <a href="@Url.Action("EditItem", "Item", new {ctl = "EditItem", itemId = Model.ItemModel.ItemId})" class="dnnSecondaryAction">@Dnn.LocalizeString("Preview")</a>
+            </li>
+            <li>
+                <asp:LinkButton ID="cmdHistory" runat="server" class="dnnSecondaryAction" resourcekey="cmdHistory" />
+                <a href="@Url.Action("EditItemVersion", "Item", new {ctl = "EditItemVersion", itemId = Model.ItemModel.ItemId})" class="dnnSecondaryAction">@Dnn.LocalizeString("Version")</a>
+            </li>
+        </ul>
+    </div>
+
+</div>
