@@ -12,6 +12,8 @@ services:
     expose:
       - '80'
       - '443' 
+    volumes:
+      - "F:/tmp/:C:/datas/"
     environment:
       connection_string: 'Server=db;Database=dnn;uid=sa;pwd=password'
   db:
